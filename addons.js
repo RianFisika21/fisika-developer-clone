@@ -1,7 +1,6 @@
 (function() {
   "use strict";
 
-  /* A. DAFTAR PRESET KASUS NYATA BERDASARKAN ID SLIDER TIAP MODUL */
   var REAL_PRESETS = {
     1: [
       { name: "Merkurius – Matahari (r ≈ 58 Gm)", values: { "mass-slider": 1.0, "radius-slider": 58 } },
@@ -38,14 +37,12 @@
     ]
   };
 
-  /* B. INJEKSI PRESET KASUS NYATA & TOMBOL REKAM VIDEO WEBM */
   function attachLabAddons() {
     var params = new URLSearchParams(window.location.search);
     var modId = parseInt(params.get("id"), 10) || 1;
     var ctrlPanel = document.querySelector(".control-panel");
     var toolbar = document.querySelector(".f3d-canvas-toolbar");
 
-    // 1. Suntikkan Dropdown Preset Fisika Nyata
     if (ctrlPanel && REAL_PRESETS[modId] && !document.getElementById("f3d-preset-box")) {
       var box = document.createElement("div");
       box.id = "f3d-preset-box";
@@ -77,23 +74,24 @@
       });
     }
 
-    // 2. Tambahkan Tombol Rekam Video WebM ke Toolbar Kanvas
-    if (toolbar && !document.getElementById("f3d-btn-rec-vid")) {
+    // Hanya tampilkan tombol Rekam Video jika browser mendukung captureStream & MediaRecorder
+    var supportsRec = typeof MediaRecorder !== "undefined" &&
+                      typeof HTMLCanvasElement !== "undefined" &&
+                      typeof HTMLCanvasElement.prototype.captureStream === "function";
+
+    if (toolbar && supportsRec && !document.getElementById("f3d-btn-rec-vid")) {
       var btnVid = document.createElement("button");
       btnVid.type = "button";
       btnVid.className = "f3d-tb-btn";
       btnVid.id = "f3d-btn-rec-vid";
-      btnVid.textContent = "🎥 Rekam Video";
+      btnVid.textContent = "🎥 Video";
       toolbar.insertBefore(btnVid, toolbar.firstChild);
 
       var recorder = null;
       var chunks = [];
       btnVid.addEventListener("click", function() {
         var canvas = document.querySelector("#f3d-module-mount canvas");
-        if (!canvas || !canvas.captureStream) {
-          alert("Browser ini belum mendukung perekaman kanvas WebGL.");
-          return;
-        }
+        if (!canvas) return;
         if (recorder && recorder.state === "recording") {
           recorder.stop();
           return;
@@ -109,17 +107,16 @@
           a.href = URL.createObjectURL(blob);
           a.download = "simulasi-fisika-modul-" + (modId < 10 ? "0" + modId : modId) + ".webm";
           document.body.appendChild(a); a.click(); document.body.removeChild(a);
-          btnVid.textContent = "🎥 Rekam Video";
+          btnVid.textContent = "🎥 Video";
           btnVid.classList.remove("is-active");
         };
         recorder.start();
-        btnVid.textContent = "⏹ Stop & Unduh";
+        btnVid.textContent = "⏹ Stop";
         btnVid.classList.add("is-active");
       });
     }
   }
 
-  /* C. TOGGLE DWI-BAHASA (ID / EN) DI HEADER */
   function setupLanguageToggle() {
     var actions = document.querySelector(".header-actions");
     if (!actions || document.getElementById("f3d-lang-btn")) return;
@@ -129,26 +126,26 @@
     btn.type = "button";
     btn.id = "f3d-lang-btn";
     btn.className = "header-nav-link";
-    btn.style.cssText = "background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.3);border-radius:6px;padding:5px 9px;cursor:pointer;font-weight:700;";
+    btn.style.cssText = "background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.3);border-radius:6px;cursor:pointer;font-weight:700;";
     btn.textContent = lang === "ID" ? "🌐 EN" : "🌐 ID";
     actions.insertBefore(btn, actions.firstChild);
 
     function applyLang(targetLang) {
       var dict = targetLang === "EN" ? {
-        "Katalog 27 Modul": "27 Modules Catalog",
+        "Katalog 27 Modul": "27 Modules",
         "Lapor Bug": "Report Bug",
-        "BUKA SIMULASI 3D ACAK": "🎲 OPEN RANDOM 3D SIMULATION",
+        "BUKA SIMULASI 3D ACAK": "🎲 RANDOM 3D SIMULATION",
         "Lompat acak lintas topik fisika": "Jump randomly across physics topics",
         "Modul Unggulan": "Featured Modules",
-        "Kategori Materi": "Physics Categories",
+        "Kategori Materi": "Categories",
         "Pengembang": "Developer"
       } : {
-        "27 Modules Catalog": "Katalog 27 Modul",
+        "27 Modules": "Katalog 27 Modul",
         "Report Bug": "Lapor Bug",
-        "🎲 OPEN RANDOM 3D SIMULATION": "🎲 BUKA SIMULASI 3D ACAK",
+        "🎲 RANDOM 3D SIMULATION": "🎲 BUKA SIMULASI 3D ACAK",
         "Jump randomly across physics topics": "Lompat acak lintas topik fisika",
         "Featured Modules": "Modul Unggulan",
-        "Physics Categories": "Kategori Materi",
+        "Categories": "Kategori Materi",
         "Developer": "Pengembang"
       };
 
@@ -170,7 +167,6 @@
     });
   }
 
-  /* D. REGISTRASI SERVICE WORKER UNTUK MODE OFFLINE (PWA) */
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", function() {
       navigator.serviceWorker.register("./sw.js").catch(function() {});
