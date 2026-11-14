@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Modul Simulasi 3D — Fisika Developer</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+    };
+  </script>
+  <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem('customThemeColor');
+        if (saved && /^#[0-9A-Fa-f]{6}$/.test(saved)) {
+          var r = parseInt(saved.slice(1, 3), 16);
+          var g = parseInt(saved.slice(3, 5), 16);
+          var b = parseInt(saved.slice(5, 7), 16);
+          document.documentElement.style.setProperty('--accent', saved);
+          document.documentElement.style.setProperty('--accent-rgb', r + ', ' + g + ', ' + b);
+        }
+      } catch (e) {}
+    })();
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-group">
+        <div class="brand-logo">FD</div>
+        <div>
+          <h1 class="brand-title"><a href="index.html">FISIKA DEVELOPER</a></h1>
+          <span class="brand-sub">Interactive 3D Computational Physics Lab</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <a class="header-nav-link" href="index.html">Katalog 27 Modul</a>
+        <a class="header-nav-link" href="mailto:ian479872@gmail.com?subject=%5BBUG%20REPORT%5D%20Fisika%20Developer" title="Laporkan Kendala Simulasi">Lapor Bug</a>
+        <div class="accent-pill" title="Ubah Warna Aksen">
+          <input id="theme-color-picker" type="color" value="#00e5ff"/>
+          <span>Aksen</span>
+          <button class="btn-reset-mini" id="btn-reset-theme" title="Reset Warna" type="button">&#8634;</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="page-shell">
+    <main class="main-column">
+      <article class="post-article-card">
+        <div class="module-breadcrumb">
+          <a href="index.html">&#8592; Kembali ke Katalog 27 Modul</a>
+          <span class="module-tag" id="f3d-mod-badge">MODUL 3D</span>
+        </div>
+        <h1 class="post-title" id="f3d-mod-title">Memuat Modul Simulasi 3D...</h1>
+        <div class="post-body" id="f3d-module-mount">
+          <p style="color:var(--text-secondary);">Menginisialisasi ruang kerja simulasi interaktif...</p>
+        </div>
+        <div id="f3d-post-nav"></div>
+      </article>
+    </main>
+
+    <aside class="sidebar-column">
+      <div class="card-box">
+        <h3 class="card-heading">
+          <span>Eksplorasi 3D</span>
+          <span style="font-size:10px;color:var(--mint);">27 MODUL</span>
+        </h3>
+        <button class="btn-random-sim" id="f3d-btn-random" type="button">🎲 BUKA SIMULASI 3D ACAK</button>
+        <div class="random-status" id="f3d-rand-msg">Lompat acak lintas topik fisika</div>
+
+        <div style="font-size:11px;font-weight:700;color:var(--text-secondary);letter-spacing:0.6px;margin-bottom:8px;text-transform:uppercase;">Modul Unggulan</div>
+        <div class="featured-list" id="f3d-featured-container"></div>
+      </div>
+
+      <div class="card-box">
+        <h3 class="card-heading"><span>Kategori Materi</span></h3>
+        <ul class="cat-nav">
+          <li><a href="index.html"><span>Semua Simulasi 3D</span><span>27</span></a></li>
+          <li><a href="index.html?cat=Radiasi"><span>Radiasi, Nuklir &amp; Medis</span><span>&#8594;</span></a></li>
+          <li><a href="index.html?cat=Plasma"><span>Plasma, Fluida &amp; Termal</span><span>&#8594;</span></a></li>
+          <li><a href="index.html?cat=Kuantum"><span>Kuantum &amp; Zat Padat</span><span>&#8594;</span></a></li>
+          <li><a href="index.html?cat=Astro"><span>Astro, Medan &amp; Gelombang</span><span>&#8594;</span></a></li>
+          <li><a href="index.html?cat=Komputasi"><span>Komputasi &amp; Chaos</span><span>&#8594;</span></a></li>
+        </ul>
+      </div>
+
+      <div class="card-box author-compact">
+        <h3 class="card-heading"><span>Pengembang</span></h3>
+        <strong>Shabri Ali Anshary</strong>
+        <span>Computational &amp; Radiation Physics</span>
+        <a class="btn-hire-mini" href="mailto:ian479872@gmail.com?subject=Tawaran%20Proyek%20Simulasi%20Web">💼 Hire Me / Kolaborasi</a>
+
+        <div class="qris-mini-wrap">
+          <span style="font-size:11px;font-weight:700;color:var(--accent);">DUKUNG PENGEMBANGAN (QRIS)</span>
+          <img alt="QRIS Dukungan" loading="lazy" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjn8CVaFUHnzJ29BANb3u8pIcpBMnOL6hbS3zl74StJT4lQZQMVQcQhNfY4mlAuALlma7hH4tqzjRbS37jIZikskLcAdOvyph9LU2ssyJGs4J17hGtbOM6IzKD-2duD3jlP1rYNDQzkLaF1NLt0YvtrfphUtM-YyN1kcEtHDL6ZC6NzZArZ9fwg37jhEW_D/s200/ebe55a66-ebf7-45c8-be08-d30afd587307.png"/>
+          <span style="font-size:11px;">Gopay, OVO, DANA, ShopeePay</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="site-footer">
+    <strong>FISIKA DEVELOPER</strong> &#8212; Portal Simulasi Fisika Komputasi 3D &#8226; <a href="index.html">Beranda</a> &#8226; <a href="https://github.com/EjenAli1/fisika-developer" target="_blank" rel="noopener">GitHub Repo</a> &#8226; <a href="mailto:ian479872@gmail.com?subject=%5BBUG%20REPORT%5D">Lapor Bug</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
