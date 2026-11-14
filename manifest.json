@@ -1,0 +1,9 @@
+{
+  "name": "Fisika Developer — Lab Komputasi 3D",
+  "short_name": "Fisika 3D",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#05070a",
+  "theme_color": "#00e5ff",
+  "description": "27 Modul Simulasi Fisika Komputasi 3D Interaktif Berbasis WebGL"
+}
