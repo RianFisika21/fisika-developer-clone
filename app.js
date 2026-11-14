@@ -14,38 +14,48 @@
     }
   })();
 
-  /* 1. KAMUS TUNGGAL 27 MODUL AKTUAL (GITHUB PAGES EDITION) */
+  /* 1. KAMUS TUNGGAL 37 MODUL AKTUAL (GITHUB PAGES EDITION) */
   window.F3D_MODULES = [
-    { id: 1,  slug: "mekanika-benda-langit-01", cat: "Astro",     catLabel: "Astro & Medan",      title: "Mekanika Benda Langit (Simulasi Orbit N-Body & Hukum Kepler)", desc: "Dinamika gravitasi N-body, lintasan elips Hukum Kepler, dan kekekalan momentum sudut orbit planet.", url: "modul.html?id=1" },
-    { id: 2,  slug: "bragg-peak-02",            cat: "Radiasi",   catLabel: "Radiasi & Medis",    title: "Jejak Peta Panas Deposisi Energi (Bragg Peak)",               desc: "Visualisasi volumetrik kurva Bragg Peak dan distribusi dosis serap berkas ion/proton.", url: "modul.html?id=2" },
-    { id: 3,  slug: "gaya-lorentz-03",          cat: "Radiasi",   catLabel: "Radiasi & Nuklir",   title: "Gaya Lorentz & Lintasan Heliks Partikel Bermuatan",            desc: "Trajektori heliks 3D muatan listrik dalam medan magnetik B dan medan listrik E silang beserta radius Larmor.", url: "modul.html?id=3" },
-    { id: 4,  slug: "distorsi-ruang-04",        cat: "Astro",     catLabel: "Astro & Medan",      title: "Distorsi Ruang (Dynamic Grid Warping)",                       desc: "Deformasi kisi ruang-waktu 3D akibat distribusi massa dan kelengkungan medan gravitasi.", url: "modul.html?id=4" },
-    { id: 5,  slug: "label-hologram-05",        cat: "Komputasi", catLabel: "Komputasi & HUD",    title: "Label Hologram 3D (In-World CSS2D / CSS3D HUD)",              desc: "Antarmuka penanda koordinat telemetri spasial 3D real-time pada objek simulasi.", url: "modul.html?id=5" },
-    { id: 6,  slug: "medan-vektor-06",          cat: "Astro",     catLabel: "Medan & Gelombang",  title: "Lautan Medan Vektor (Dynamic Vector Field)",                  desc: "Visualisasi panah fluks gradien, divergensi, dan rotasi medan gaya elektromagnetik 3D.", url: "modul.html?id=6" },
-    { id: 7,  slug: "sumur-potensial-07",       cat: "Kuantum",   catLabel: "Kuantum",            title: "Sumur Spasi-Waktu / Potensial Kuantum",                       desc: "Kuantisasi tingkat energi eigen dan profil sumur potensial dalam ruang 3D.", url: "modul.html?id=7" },
-    { id: 8,  slug: "kisi-kristal-08",          cat: "Kuantum",   catLabel: "Zat Padat",          title: "Transisi Fase Kisi Kristal (Thermodynamic Lattice)",          desc: "Vibrasi fonon atomik, parameter keteraturan, dan pelelehan kisi kristal akibat suhu.", url: "modul.html?id=8" },
-    { id: 9,  slug: "gyroscope-vr-09",          cat: "Komputasi", catLabel: "Sensor & VR",        title: "Interaksi Sensor Gyroscope / VR HP",                          desc: "Kendali orientasi kamera 3D interaktif menggunakan sensor akselerometer & giroskop ponsel.", url: "modul.html?id=9" },
-    { id: 10, slug: "plasma-dbd-10",            cat: "Plasma",    catLabel: "Plasma & Fluida",    title: "Peta Topografi Plasma DBD 3D",                                desc: "Profil kerapatan mikro-lucutan Dielectric Barrier Discharge dan distribusi radikal aktif.", url: "modul.html?id=10" },
-    { id: 11, slug: "mcnp-phits-11",            cat: "Radiasi",   catLabel: "Radiasi & Nuklir",   title: "Lintasan Transport Partikel MCNP/PHITS (Voxel Phantom)",       desc: "Pelacakan jejak foton, neutron, dan elektron melintasi geometri fantom medis tervokselisasi.", url: "modul.html?id=11" },
-    { id: 12, slug: "pinns-loss-12",            cat: "Komputasi", catLabel: "AI & Komputasi",     title: "Physics-Informed Neural Networks (PINNs) Loss Surface",       desc: "Eksplorasi lanskap optimasi residu persamaan diferensial parsial pada jaringan saraf fisika.", url: "modul.html?id=12" },
-    { id: 13, slug: "lensa-astro-13",           cat: "Astro",     catLabel: "Astro & Optik",      title: "Interaksi Lensa Astrofotografi 3D (Optik Teleskop)",           desc: "Penelusuran berkas cahaya bintang, aberasi optik, dan titik fokus sistem teleskop reflektor/refraktor.", url: "modul.html?id=13" },
-    { id: 14, slug: "bokashi-termal-14",        cat: "Plasma",    catLabel: "Termal & Fluida",    title: "Dinamika Termal Dekomposisi Organik (Bokashi Core)",          desc: "Pemodelan difusi panas eksotermik dan profil gradien suhu fase termofilik komposter.", url: "modul.html?id=14" },
-    { id: 15, slug: "rheology-gel-15",          cat: "Plasma",    catLabel: "Termal & Fluida",    title: "Transisi Sol-ke-Gel & Elastisitas Polimer (Rheology 3D)",      desc: "Perubahan viskoelastisitas jaringan ikat silang polimer dan modulus geser terhadap suhu.", url: "modul.html?id=15" },
-    { id: 16, slug: "avalanche-pmt-16",         cat: "Radiasi",   catLabel: "Detektor Radiasi",   title: "Avalanche Elektron pada Detektor Radiasi (PMT & NaI(Tl))",      desc: "Sintilasi foton dalam kristal NaI(Tl) dan multiplikasi elektron sekunder pada dinoda PMT.", url: "modul.html?id=16" },
-    { id: 17, slug: "dasbor-geospasial-17",     cat: "Komputasi", catLabel: "Geospasial HUD",     title: "Dasbor Hologram Geospasial (Disaster Telemetry)",             desc: "Visualisasi terestrial 3D parameter atmosfer, radiasi, dan telemetri kebencanaan.", url: "modul.html?id=17" },
-    { id: 18, slug: "radiasi-cherenkov-18",     cat: "Radiasi",   catLabel: "Nuklir & Reaktor",   title: "Radiasi Cherenkov dalam Teras Reaktor Nuklir",                desc: "Kerucut kejut optik biru partikel beta relativistik dalam air pendingin teras reaktor.", url: "modul.html?id=18" },
-    { id: 19, slug: "terowongan-kuantum-19",    cat: "Kuantum",   catLabel: "Kuantum",            title: "Efek Terowongan Kuantum 3D (Quantum Wavepacket)",             desc: "Solver TDSE Persamaan Schrödinger untuk transmisi paket gelombang melintasi penghalang potensial.", url: "modul.html?id=19" },
-    { id: 20, slug: "lensa-gravitasi-20",       cat: "Astro",     catLabel: "Astrofisika",        title: "Lensa Gravitasi & Cakram Akresi Lubang Hitam",                desc: "Ray-marching geodesik Schwarzschild, Cincin Einstein, dan efek Doppler beaming relativistik.", url: "modul.html?id=20" },
-    { id: 21, slug: "von-karman-21",            cat: "Plasma",    catLabel: "Dinamika Fluida",    title: "Terowongan Angin & Pusaran Von Kármán",                      desc: "Pelepasan pusaran periodik pada aliran fluida melewati silinder, bola, dan airfoil.", url: "modul.html?id=21" },
-    { id: 22, slug: "reaktor-tokamak-22",       cat: "Plasma",    catLabel: "Plasma & Fusi",      title: "Reaktor Fusi Tokamak & Kurungan Magnetik",                    desc: "Kurungan magnetik heliks plasma, faktor keamanan q, dan kriteria penyalaan Lawson.", url: "modul.html?id=22" },
-    { id: 23, slug: "ct-scan-radon-23",         cat: "Radiasi",   catLabel: "Fisika Medis",       title: "Rekonstruksi CT-Scan Medis & Proyeksi Radon",                 desc: "Atenuasi sinar-X Beer–Lambert, pembentukan sinogram, dan rekonstruksi Filtered Back-Projection.", url: "modul.html?id=23" },
-    { id: 24, slug: "atraktor-lorenz-24",       cat: "Komputasi", catLabel: "Chaos & Dinamika",   title: "Atraktor Aneh Lorenz & Efek Kupu-Kupu",                       desc: "Integrasi RK4 dua lintasan konveksi untuk mengamati sensitivitas kondisi awal sistem chaos.", url: "modul.html?id=24" },
-    { id: 25, slug: "efek-meissner-25",         cat: "Kuantum",   catLabel: "Zat Padat",          title: "Efek Meissner & Levitasi Superkonduktor",                     desc: "Levitasi magnetik YBCO di bawah suhu kritis 92 K dan penguncian tabung fluks Abrikosov.", url: "modul.html?id=25" },
-    { id: 26, slug: "pelat-chladni-26",         cat: "Astro",     catLabel: "Akustik & Gelombang",title: "Resonansi Akustik Pelat Chladni 3D",                          desc: "Migrasi 5.500 butir pasir ke garis simpul gelombang berdiri disertai sintesis Web Audio.", url: "modul.html?id=26" },
-    { id: 27, slug: "pandu-gelombang-27",       cat: "Astro",     catLabel: "Elektromagnetika",   title: "Pandu Gelombang Elektromagnetik & Mode Rongga (TE/TM)",       desc: "Propagasi gelombang mikro WR-90, vektor medan E & H, serta batas frekuensi potong.", url: "modul.html?id=27" }
+    { id: 1,  slug: "mekanika-benda-langit-01", cat: "Astro",     catLabel: "Astro & Medan",       title: "Mekanika Benda Langit (Simulasi Orbit N-Body & Hukum Kepler)", desc: "Dinamika gravitasi N-body, lintasan elips Hukum Kepler, dan kekekalan momentum sudut orbit planet.", url: "modul.html?id=1" },
+    { id: 2,  slug: "bragg-peak-02",            cat: "Radiasi",   catLabel: "Radiasi & Medis",     title: "Jejak Peta Panas Deposisi Energi (Bragg Peak)",               desc: "Visualisasi volumetrik kurva Bragg Peak dan distribusi dosis serap berkas ion/proton.", url: "modul.html?id=2" },
+    { id: 3,  slug: "gaya-lorentz-03",          cat: "Radiasi",   catLabel: "Radiasi & Nuklir",    title: "Gaya Lorentz & Lintasan Heliks Partikel Bermuatan",            desc: "Trajektori heliks 3D muatan listrik dalam medan magnetik B dan medan listrik E silang beserta radius Larmor.", url: "modul.html?id=3" },
+    { id: 4,  slug: "distorsi-ruang-04",        cat: "Astro",     catLabel: "Astro & Medan",       title: "Distorsi Ruang (Dynamic Grid Warping)",                       desc: "Deformasi kisi ruang-waktu 3D akibat distribusi massa dan kelengkungan medan gravitasi.", url: "modul.html?id=4" },
+    { id: 5,  slug: "label-hologram-05",        cat: "Komputasi", catLabel: "Komputasi & HUD",     title: "Label Hologram 3D (In-World CSS2D / CSS3D HUD)",              desc: "Antarmuka penanda koordinat telemetri spasial 3D real-time pada objek simulasi.", url: "modul.html?id=5" },
+    { id: 6,  slug: "medan-vektor-06",          cat: "Astro",     catLabel: "Medan & Gelombang",   title: "Lautan Medan Vektor (Dynamic Vector Field)",                  desc: "Visualisasi panah fluks gradien, divergensi, dan rotasi medan gaya elektromagnetik 3D.", url: "modul.html?id=6" },
+    { id: 7,  slug: "sumur-potensial-07",       cat: "Kuantum",   catLabel: "Kuantum",             title: "Sumur Spasi-Waktu / Potensial Kuantum",                       desc: "Kuantisasi tingkat energi eigen dan profil sumur potensial dalam ruang 3D.", url: "modul.html?id=7" },
+    { id: 8,  slug: "kisi-kristal-08",          cat: "Kuantum",   catLabel: "Zat Padat",           title: "Transisi Fase Kisi Kristal (Thermodynamic Lattice)",          desc: "Vibrasi fonon atomik, parameter keteraturan, dan pelelehan kisi kristal akibat suhu.", url: "modul.html?id=8" },
+    { id: 9,  slug: "gyroscope-vr-09",          cat: "Komputasi", catLabel: "Sensor & VR",         title: "Interaksi Sensor Gyroscope / VR HP",                          desc: "Kendali orientasi kamera 3D interaktif menggunakan sensor akselerometer & giroskop ponsel.", url: "modul.html?id=9" },
+    { id: 10, slug: "plasma-dbd-10",            cat: "Plasma",    catLabel: "Plasma & Fluida",     title: "Peta Topografi Plasma DBD 3D",                                desc: "Profil kerapatan mikro-lucutan Dielectric Barrier Discharge dan distribusi radikal aktif.", url: "modul.html?id=10" },
+    { id: 11, slug: "mcnp-phits-11",            cat: "Radiasi",   catLabel: "Radiasi & Nuklir",    title: "Lintasan Transport Partikel MCNP/PHITS (Voxel Phantom)",       desc: "Pelacakan jejak foton, neutron, dan elektron melintasi geometri fantom medis tervokselisasi.", url: "modul.html?id=11" },
+    { id: 12, slug: "pinns-loss-12",            cat: "Komputasi", catLabel: "AI & Komputasi",      title: "Physics-Informed Neural Networks (PINNs) Loss Surface",       desc: "Eksplorasi lanskap optimasi residu persamaan diferensial parsial pada jaringan saraf fisika.", url: "modul.html?id=12" },
+    { id: 13, slug: "lensa-astro-13",           cat: "Astro",     catLabel: "Astro & Optik",       title: "Interaksi Lensa Astrofotografi 3D (Optik Teleskop)",           desc: "Penelusuran berkas cahaya bintang, aberasi optik, dan titik fokus sistem teleskop reflektor/refraktor.", url: "modul.html?id=13" },
+    { id: 14, slug: "bokashi-termal-14",        cat: "Plasma",    catLabel: "Termal & Fluida",     title: "Dinamika Termal Dekomposisi Organik (Bokashi Core)",          desc: "Pemodelan difusi panas eksotermik dan profil gradien suhu fase termofilik komposter.", url: "modul.html?id=14" },
+    { id: 15, slug: "rheology-gel-15",          cat: "Plasma",    catLabel: "Termal & Fluida",     title: "Transisi Sol-ke-Gel & Elastisitas Polimer (Rheology 3D)",      desc: "Perubahan viskoelastisitas jaringan ikat silang polimer dan modulus geser terhadap suhu.", url: "modul.html?id=15" },
+    { id: 16, slug: "avalanche-pmt-16",         cat: "Radiasi",   catLabel: "Detektor Radiasi",    title: "Avalanche Elektron pada Detektor Radiasi (PMT & NaI(Tl))",      desc: "Sintilasi foton dalam kristal NaI(Tl) dan multiplikasi elektron sekunder pada dinoda PMT.", url: "modul.html?id=16" },
+    { id: 17, slug: "dasbor-geospasial-17",     cat: "Komputasi", catLabel: "Geospasial HUD",      title: "Dasbor Hologram Geospasial (Disaster Telemetry)",             desc: "Visualisasi terestrial 3D parameter atmosfer, radiasi, dan telemetri kebencanaan.", url: "modul.html?id=17" },
+    { id: 18, slug: "radiasi-cherenkov-18",     cat: "Radiasi",   catLabel: "Nuklir & Reaktor",    title: "Radiasi Cherenkov dalam Teras Reaktor Nuklir",                desc: "Kerucut kejut optik biru partikel beta relativistik dalam air pendingin teras reaktor.", url: "modul.html?id=18" },
+    { id: 19, slug: "terowongan-kuantum-19",    cat: "Kuantum",   catLabel: "Kuantum",             title: "Efek Terowongan Kuantum 3D (Quantum Wavepacket)",             desc: "Solver TDSE Persamaan Schrödinger untuk transmisi paket gelombang melintasi penghalang potensial.", url: "modul.html?id=19" },
+    { id: 20, slug: "lensa-gravitasi-20",       cat: "Astro",     catLabel: "Astrofisika",         title: "Lensa Gravitasi & Cakram Akresi Lubang Hitam",                desc: "Ray-marching geodesik Schwarzschild, Cincin Einstein, dan efek Doppler beaming relativistik.", url: "modul.html?id=20" },
+    { id: 21, slug: "von-karman-21",            cat: "Plasma",    catLabel: "Dinamika Fluida",     title: "Terowongan Angin & Pusaran Von Kármán",                      desc: "Pelepasan pusaran periodik pada aliran fluida melewati silinder, bola, dan airfoil.", url: "modul.html?id=21" },
+    { id: 22, slug: "reaktor-tokamak-22",       cat: "Plasma",    catLabel: "Plasma & Fusi",       title: "Reaktor Fusi Tokamak & Kurungan Magnetik",                    desc: "Kurungan magnetik heliks plasma, faktor keamanan q, dan kriteria penyalaan Lawson.", url: "modul.html?id=22" },
+    { id: 23, slug: "ct-scan-radon-23",         cat: "Radiasi",   catLabel: "Fisika Medis",        title: "Rekonstruksi CT-Scan Medis & Proyeksi Radon",                 desc: "Atenuasi sinar-X Beer–Lambert, pembentukan sinogram, dan rekonstruksi Filtered Back-Projection.", url: "modul.html?id=23" },
+    { id: 24, slug: "atraktor-lorenz-24",       cat: "Komputasi", catLabel: "Chaos & Dinamika",    title: "Atraktor Aneh Lorenz & Efek Kupu-Kupu",                       desc: "Integrasi RK4 dua lintasan konveksi untuk mengamati sensitivitas kondisi awal sistem chaos.", url: "modul.html?id=24" },
+    { id: 25, slug: "efek-meissner-25",         cat: "Kuantum",   catLabel: "Zat Padat",           title: "Efek Meissner & Levitasi Superkonduktor",                     desc: "Levitasi magnetik YBCO di bawah suhu kritis 92 K dan penguncian tabung fluks Abrikosov.", url: "modul.html?id=25" },
+    { id: 26, slug: "pelat-chladni-26",         cat: "Astro",     catLabel: "Akustik & Gelombang", title: "Resonansi Akustik Pelat Chladni 3D",                          desc: "Migrasi 5.500 butir pasir ke garis simpul gelombang berdiri disertai sintesis Web Audio.", url: "modul.html?id=26" },
+    { id: 27, slug: "pandu-gelombang-27",       cat: "Astro",     catLabel: "Elektromagnetika",    title: "Pandu Gelombang Elektromagnetik & Mode Rongga (TE/TM)",       desc: "Propagasi gelombang mikro WR-90, vektor medan E & H, serta batas frekuensi potong.", url: "modul.html?id=27" },
+    { id: 28, slug: "hamburan-compton-28",      cat: "Radiasi",   catLabel: "Radiasi & Nuklir",    title: "Hamburan Compton 3D & Kinematika Foton–Elektron",             desc: "Pergeseran panjang gelombang foton gamma, sudut pental elektron, dan lobus polar Klein–Nishina.", url: "modul.html?id=28" },
+    { id: 29, slug: "peluruhan-radioaktif-29",  cat: "Radiasi",   catLabel: "Fisika Nuklir",       title: "Rantai Peluruhan Radioaktif 3D & Hukum Bateman",              desc: "Transmutasi stokastik kisi inti atom A → B → C (stabil) dan dinamika kesetimbangan radioaktif.", url: "modul.html?id=29" },
+    { id: 30, slug: "resonansi-bloch-30",       cat: "Kuantum",   catLabel: "Komputasi Kuantum",   title: "Bola Bloch 3D & Presesi Larmor Qubit (Osilasi Rabi)",          desc: "Evolusi vektor keadaan superposisi qubit pada permukaan Bola Bloch di bawah detuning medan.", url: "modul.html?id=30" },
+    { id: 31, slug: "struktur-pita-31",         cat: "Kuantum",   catLabel: "Zat Padat",           title: "Struktur Pita Energi Kristal 3D & Dispersi Tight-Binding",    desc: "Permukaan energi pita konduksi dan pita valensi dalam zona Brillouin serta eksitasi pembawa termal.", url: "modul.html?id=31" },
+    { id: 32, slug: "efek-magnus-32",           cat: "Plasma",    catLabel: "Dinamika Fluida",     title: "Aerodinamika Efek Magnus & Lintasan Bola Berputar 3D",        desc: "Pembelokan lintasan proyektil berputar akibat gaya angkat Magnus dan hambatan udara kuadratik.", url: "modul.html?id=32" },
+    { id: 33, slug: "konveksi-rayleigh-33",     cat: "Plasma",    catLabel: "Termal & Fluida",     title: "Sel Konveksi Rayleigh–Bénard 3D & Plume Termal",              desc: "Instabilitas termal fluida di atas bilangan Rayleigh kritis Ra > 1708 dan pembentukan sel gulungan konveksi.", url: "modul.html?id=33" },
+    { id: 34, slug: "gelombang-gravitasi-34",   cat: "Astro",     catLabel: "Astrofisika",         title: "Gelombang Gravitasi Biner & Regangan Ruang-Waktu (h₊)",       desc: "Radiasi kuadrupol riak ruang-waktu dari sistem bintang kompak biner yang mengorbit.", url: "modul.html?id=34" },
+    { id: 35, slug: "interferometer-michelson-35", cat: "Astro",  catLabel: "Optik & Gelombang",   title: "Interferometer Michelson 3D & Frinji Interferensi Laser",     desc: "Meja optik 3D beam-splitter dan pergeseran cincin frinji interferensi akibat mikrometer cermin.", url: "modul.html?id=35" },
+    { id: 36, slug: "pendulum-ganda-36",        cat: "Komputasi", catLabel: "Chaos & Dinamika",    title: "Pendulum Ganda 3D (Double Pendulum) & Lintasan Chaos",        desc: "Integrasi persamaan gerak Lagrangian terkopel non-linear dengan jejak lintasan deterministik kacau.", url: "modul.html?id=36" },
+    { id: 37, slug: "metropolis-ising-37",      cat: "Komputasi", catLabel: "Fisika Statistik",    title: "Model Ising Feromagnetik 3D & Transisi Fase Curie",           desc: "Simulasi Monte Carlo Metropolis kisi spin dipol 3D melintasi suhu kritis Curie Tc ≈ 4.51.", url: "modul.html?id=37" }
   ];
 
-  /* 2. KAMUS KONFIGURASI TELEMETRI CSV & DEEP-LINK (ID 1 - 27) */
+  /* 2. KAMUS KONFIGURASI TELEMETRI CSV & DEEP-LINK (ID 1 - 37) */
   window.FISIKA3D_CONFIGS = {
     1:  { moduleSlug: "mekanika-benda-langit-01", paramMap: { mass: "mass-slider", radius: "radius-slider", vel: "vel-slider", ecc: "ecc-slider" }, csvHeaders: ["Waktu_s", "Massa_M", "Radius_Gm", "Kecepatan_kms", "Periode_Hari"] },
     2:  { moduleSlug: "bragg-peak-02",            paramMap: { energy: "energy-slider", ion: "ion-select", depth: "depth-slider" }, csvHeaders: ["Waktu_s", "Kedalaman_cm", "Dosis_Relatif_pct", "LET_keV_um", "Posisi_Bragg_cm"] },
@@ -73,10 +83,20 @@
     24: { moduleSlug: "atraktor-lorenz-24",       paramMap: { rho: "rho-slider", sigma: "sigma-slider", delta: "delta-slider" }, csvHeaders: ["Waktu_s", "Rayleigh_rho", "Prandtl_sigma", "xA", "yA", "zA", "Jarak_Fase_dR"] },
     25: { moduleSlug: "efek-meissner-25",         paramMap: { mode: "mode-select", temp: "temp-slider", b0: "mag-slider" }, csvHeaders: ["Waktu_s", "Rezim_Superkonduktor", "Suhu_K", "Medan_Rel_T", "Kedalaman_London_nm", "Celah_Levitasi_cm"] },
     26: { moduleSlug: "pelat-chladni-26",         paramMap: { n: "n-slider", m: "m-slider", sym: "sym-select", amp: "amp-slider" }, csvHeaders: ["Waktu_s", "Mode_n", "Mode_m", "Simetri", "Amplitudo_mm", "Frekuensi_Eigen_Hz", "Terkunci_Simpul_pct"] },
-    27: { moduleSlug: "pandu-gelombang-27",       paramMap: { mode: "mode-select", freq: "freq-slider", width: "width-slider" }, csvHeaders: ["Waktu_s", "Mode_Rongga", "Frekuensi_GHz", "Lebar_a_mm", "Cutoff_fc_GHz", "Panjang_Gelombang_Pandu_mm", "Kecepatan_Grup_c"] }
+    27: { moduleSlug: "pandu-gelombang-27",       paramMap: { mode: "mode-select", freq: "freq-slider", width: "width-slider" }, csvHeaders: ["Waktu_s", "Mode_Rongga", "Frekuensi_GHz", "Lebar_a_mm", "Cutoff_fc_GHz", "Panjang_Gelombang_Pandu_mm", "Kecepatan_Grup_c"] },
+    28: { moduleSlug: "hamburan-compton-28",      paramMap: { energy: "energy-slider", angle: "angle-slider" }, csvHeaders: ["Waktu_s", "E0_keV", "Sudut_deg", "E_Terhambur_keV", "Ke_Elektron_keV", "Delta_Lambda_pm"] },
+    29: { moduleSlug: "peluruhan-radioaktif-29",  paramMap: { t1: "t1-slider", t2: "t2-slider" }, csvHeaders: ["Waktu_s", "T1_s", "T2_s", "Populasi_NA_pct", "Populasi_NB_pct", "Aktivitas_Bq"] },
+    30: { moduleSlug: "resonansi-bloch-30",       paramMap: { rabi: "rabi-slider", detuning: "detuning-slider" }, csvHeaders: ["Waktu_s", "Rabi_MHz", "Detuning_MHz", "Prob_Eksitasi_pct", "Omega_Eff_MHz", "Fase_rad"] },
+    31: { moduleSlug: "struktur-pita-31",         paramMap: { gap: "gap-slider", temp: "temp-slider", hop: "hopping-slider" }, csvHeaders: ["Waktu_s", "Gap_eV", "Suhu_K", "Hopping_eV", "Material", "Pembawa_Relatif"] },
+    32: { moduleSlug: "efek-magnus-32",           paramMap: { speed: "speed-slider", spin: "spin-slider", angle: "angle-slider" }, csvHeaders: ["Waktu_s", "Kecepatan_ms", "Spin_rads", "Elevasi_deg", "Defleksi_m", "Jangkauan_m"] },
+    33: { moduleSlug: "konveksi-rayleigh-33",     paramMap: { dt: "dt-slider", visc: "visc-slider" }, csvHeaders: ["Waktu_s", "DeltaT_K", "Viskositas_mm2s", "Bilangan_Rayleigh", "Bilangan_Nusselt", "Rezim"] },
+    34: { moduleSlug: "gelombang-gravitasi-34",   paramMap: { mass: "mass-slider", sep: "sep-slider" }, csvHeaders: ["Waktu_s", "Massa_Msun", "Separasi_km", "Frekuensi_GW_Hz", "Regangan_h"] },
+    35: { moduleSlug: "interferometer-michelson-35", paramMap: { lam: "lambda-slider", dd: "mirror-slider" }, csvHeaders: ["Waktu_s", "Lambda_nm", "Pergeseran_nm", "Orde_Frinji", "Intensitas_pct"] },
+    36: { moduleSlug: "pendulum-ganda-36",        paramMap: { a1: "angle1-slider", m2: "m2-slider" }, csvHeaders: ["Waktu_s", "Sudut1_deg", "Massa2_kg", "Omega2_rads", "Energi_Total_J"] },
+    37: { moduleSlug: "metropolis-ising-37",      paramMap: { temp: "temp-slider", field: "field-slider" }, csvHeaders: ["Waktu_s", "Suhu_T", "Medan_h", "Magnetisasi_M", "Fase_Magnetik"] }
   };
 
-  /* 2B. KAMUS AKADEMIK & LKM (PERSAMAAN LATEX + PROSEDUR UNTUK 27 MODUL) */
+  /* 2B. KAMUS AKADEMIK & LKM (PERSAMAAN LATEX + PROSEDUR UNTUK 37 MODUL) */
   window.F3D_ACADEMIC = {
     1:  { eq: "$$v = \\sqrt{\\frac{GM}{r}}, \\qquad T = 2\\pi\\sqrt{\\frac{r^3}{GM}}$$", note: "Kecepatan orbit sirkular berbanding terbalik dengan akar radius orbit, sementara kuadrat periode revolusi sebanding dengan pangkat tiga jarak rata-rata (Hukum III Kepler)." },
     2:  { eq: "$$-\\frac{dE}{dx} \\propto \\frac{z^2}{v^2} \\left[\\ln\\left(\\frac{2m_e v^2}{I}\\right) - \\beta^2\\right]$$", note: "Persamaan Bethe–Bloch menunjukkan bahwa laju kehilangan energi partikel bermuatan melonjak tajam tepat sebelum berhenti (puncak Bragg), menjadi dasar terapi proton presisi tinggi." },
@@ -104,7 +124,17 @@
     24: { eq: "$$\\frac{dx}{dt}=\\sigma(y-x), \\quad \\frac{dy}{dt}=x(\\rho-z)-y, \\quad \\frac{dz}{dt}=xy-\\beta z$$", note: "Perbedaan kondisi awal sekecil apa pun berkembang secara eksponensial menjadi lintasan yang sama sekali berbeda dalam ruang fase." },
     25: { eq: "$$\\lambda_L(T) = \\frac{\\lambda_0}{\\sqrt{1-(T/T_c)^4}}, \\qquad \\vec{B}(x) = \\vec{B}_0 e^{-x/\\lambda_L}$$", note: "Di bawah suhu kritis $T_c$, superkonduktor menolak fluks magnetik internal hingga kedalaman penetrasi London $\\lambda_L$." },
     26: { eq: "$$\\cos\\left(\\frac{n\\pi x}{L}\\right)\\cos\\left(\\frac{m\\pi y}{L}\\right) \\pm \\cos\\left(\\frac{m\\pi x}{L}\\right)\\cos\\left(\\frac{n\\pi y}{L}\\right) = 0$$", note: "Butiran pasir bermigrasi menjauhi perut getaran dan terkumpul tepat di garis simpul gelombang berdiri dengan amplitudo nol." },
-    27: { eq: "$$f_{c,mn} = \\frac{c}{2}\\sqrt{\\left(\\frac{m}{a}\\right)^2 + \\left(\\frac{n}{b}\\right)^2}, \\qquad \\lambda_g = \\frac{\\lambda_0}{\\sqrt{1-(f_c/f)^2}}$$", note: "Gelombang elektromagnetik hanya dapat merambat di dalam pandu gelombang jika frekuensi kerjanya melampaui frekuensi potong $f_c$." }
+    27: { eq: "$$f_{c,mn} = \\frac{c}{2}\\sqrt{\\left(\\frac{m}{a}\\right)^2 + \\left(\\frac{n}{b}\\right)^2}, \\qquad \\lambda_g = \\frac{\\lambda_0}{\\sqrt{1-(f_c/f)^2}}$$", note: "Gelombang elektromagnetik hanya dapat merambat di dalam pandu gelombang jika frekuensi kerjanya melampaui frekuensi potong $f_c$." },
+    28: { eq: "$$\\Delta\\lambda = \\lambda' - \\lambda = \\frac{h}{m_e c}(1 - \\cos\\theta), \\qquad E' = \\frac{E_0}{1 + \\frac{E_0}{m_e c^2}(1 - \\cos\\theta)}$$", note: "Hamburan elastis foton gamma oleh elektron bebas membuktikan sifat partikel cahaya yang membawa momentum $p = h/\\lambda$." },
+    29: { eq: "$$N_B(t) = N_0 \\frac{\\lambda_1}{\\lambda_2 - \\lambda_1}\\left(e^{-\\lambda_1 t} - e^{-\\lambda_2 t}\\right), \\qquad \\lambda = \\frac{\\ln 2}{T_{1/2}}$$", note: "Persamaan Bateman menggambarkan pertumbuhan dan peluruhan nuklida anak dalam rantai peluruhan berantai hingga mencapai isotop stabil." },
+    30: { eq: "$$|\\psi\\rangle = \\cos\\frac{\\theta}{2}|0\\rangle + e^{i\\phi}\\sin\\frac{\\theta}{2}|1\\rangle, \\qquad P(|1\\rangle) = \\frac{\\Omega_0^2}{\\Omega_0^2 + \\Delta^2}\\sin^2\\left(\\frac{\\Omega_R t}{2}\\right)$$", note: "Vektor keadaan qubit berpresesi pada permukaan Bola Bloch dengan frekuensi Rabi efektif $\\Omega_R = \\sqrt{\\Omega_0^2 + \\Delta^2}$." },
+    31: { eq: "$$E(k_x, k_y) = E_0 \\pm \\left[\\frac{E_g}{2} + 2t(2 - \\cos k_x a - \\cos k_y a)\\right]$$", note: "Lebar celah pita $E_g$ menentukan apakah suatu kristal bersifat konduktor, semikonduktor, atau isolator dielektrik." },
+    32: { eq: "$$\\vec{F}_M = S(\\vec{\\omega} \\times \\vec{v}), \\qquad \\vec{F}_D = -\\frac{1}{2}\\rho C_D A |\\vec{v}|\\vec{v}$$", note: "Perbedaan tekanan fluida akibat rotasi bola menghasilkan gaya angkat Magnus yang membelokkan lintasan bola secara lateral." },
+    33: { eq: "$$\\text{Ra} = \\frac{g\\beta\\Delta T H^3}{\\nu\\alpha} > 1708, \\qquad \\text{Nu} \\approx 1 + 1.44\\left(1 - \\frac{\\text{Ra}_c}{\\text{Ra}}\\right)$$", note: "Ketika gradien suhu melampaui ambang kritis Rayleigh, gaya apung mengalahkan viskositas dan membentuk sel gulungan konveksi." },
+    34: { eq: "$$f_{\\text{GW}} = 2 f_{\\text{orb}} = \\frac{1}{\\pi}\\sqrt{\\frac{GM}{a^3}}, \\qquad h \\propto \\frac{G^2 M_1 M_2}{c^4 a D}$$", note: "Dua benda masif yang saling mengorbit memancarkan gelombang gravitasi kuadrupol pada frekuensi dua kali lipat frekuensi orbitnya." },
+    35: { eq: "$$\\Delta = 2\\Delta d = m\\lambda, \\qquad I = I_0 \\cos^2\\left(\\frac{2\\pi\\Delta d}{\\lambda}\\right)$$", note: "Pergeseran cermin sejauh setengah panjang gelombang menggeser satu frinji terang-gelap penuh pada pola interferensi." },
+    36: { eq: "$$\\mathcal{L} = \\frac{1}{2}(m_1+m_2)L_1^2\\dot{\\theta}_1^2 + \\frac{1}{2}m_2 L_2^2\\dot{\\theta}_2^2 + m_2 L_1 L_2\\dot{\\theta}_1\\dot{\\theta}_2\\cos(\\theta_1-\\theta_2) - V$$", note: "Pendulum ganda merupakan sistem mekanika deterministik non-linear yang menunjukkan sensitivitas ekstrem terhadap kondisi awal." },
+    37: { eq: "$$\\mathcal{H} = -J\\sum_{\\langle i,j\\rangle} s_i s_j - h\\sum_i s_i, \\qquad P_{\\text{acc}} = \\min\\left(1, e^{-\\Delta E / k_B T}\\right)$$", note: "Pada kisi kubik 3D, magnetisasi spontan menghilang melalui transisi fase orde dua di sekitar suhu kritis Curie $T_c \\approx 4.51\\,J/k_B$." }
   };
 
   function padNum(n) { return n < 10 ? "0" + n : "" + n; }
@@ -115,14 +145,10 @@
     var css = [
       "html, body { max-width: 100%; overflow-x: hidden; box-sizing: border-box; }",
       "*, *::before, *::after { box-sizing: inherit; }",
-
-      /* Bilah Alat Lab di ATAS Simulasi (Bebas dari tumpukan tombol bawaan di dalam kanvas) */
       ".f3d-canvas-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:10px; padding:8px 10px; background:rgba(8,13,24,0.9); border:1px solid rgba(0,229,255,0.22); border-radius:8px; }",
       ".f3d-tb-btn { background:rgba(15,23,42,0.9); border:1px solid rgba(0,229,255,0.32); color:#e2e8f0; padding:6px 10px; border-radius:6px; font-size:11.5px; font-weight:600; cursor:pointer; transition:all .15s ease; display:inline-flex; align-items:center; justify-content:center; gap:5px; white-space:nowrap; }",
       ".f3d-tb-btn:hover { background:rgba(0,229,255,0.2); border-color:#00e5ff; color:#fff; }",
       ".f3d-tb-btn.is-active { background:#00e5ff; color:#05070a; border-color:#00e5ff; }",
-
-      /* Mode Kelas & Mode Embed */
       "body.f3d-class-mode .post-article-card { max-width:100% !important; }",
       "body.f3d-class-mode .sidebar-column { display:none !important; }",
       "body.f3d-class-mode .page-shell { grid-template-columns:1fr !important; }",
@@ -131,8 +157,6 @@
       "body.f3d-embed-mode .site-header, body.f3d-embed-mode .sidebar-column, body.f3d-embed-mode .site-footer, body.f3d-embed-mode #f3d-post-nav, body.f3d-embed-mode .module-breadcrumb { display:none !important; }",
       "body.f3d-embed-mode .page-shell { padding:8px !important; max-width:100% !important; display:block !important; }",
       "body.f3d-embed-mode .post-article-card { margin:0 !important; border-radius:10px !important; }",
-
-      /* LKM, Grafik & Modal */
       ".f3d-lkm-box { margin-top:20px; background:rgba(10,16,28,0.85); border:1px solid rgba(0,229,255,0.22); border-radius:12px; overflow:hidden; }",
       ".f3d-lkm-tabs { display:flex; flex-wrap:wrap; background:rgba(5,9,18,0.9); border-bottom:1px solid rgba(0,229,255,0.18); }",
       ".f3d-lkm-tab { flex:1; min-width:120px; padding:10px 12px; background:transparent; border:none; color:#94a3b8; font-size:12px; font-weight:700; cursor:pointer; border-bottom:2px solid transparent; transition:all .15s; }",
@@ -146,8 +170,6 @@
       ".f3d-modal-backdrop { position:fixed; inset:0; background:rgba(2,6,14,0.82); backdrop-filter:blur(5px); z-index:9999; display:none; align-items:center; justify-content:center; padding:16px; }",
       ".f3d-modal-backdrop.is-open { display:flex; }",
       ".f3d-modal-card { background:#0b1220; border:1px solid rgba(0,229,255,0.35); border-radius:14px; max-width:540px; width:100%; padding:20px; color:#e2e8f0; box-shadow:0 20px 50px rgba(0,0,0,0.75); }",
-
-      /* KHUSUS PERBAIKAN RESOLUSI & HEADER ANDROID / MOBILE */
       "@media (max-width: 820px) {",
       "  .site-header { height:auto !important; position:relative !important; }",
       "  .header-inner { flex-direction:column !important; align-items:flex-start !important; gap:10px !important; padding:10px 12px !important; height:auto !important; }",
@@ -382,7 +404,7 @@
     }
   };
 
-  /* 6. UNIVERSAL AUTO-ENHANCER (TOOLBAR DI ATAS SIMULASI, LIVE CHART, LKM & LAPORAN PDF) */
+  /* 6. UNIVERSAL AUTO-ENHANCER */
   function enhanceLoadedModule(modObj, mountEl) {
     var wrapper = mountEl.querySelector(".physics-sim-wrapper");
     var visPanel = mountEl.querySelector(".visualization-panel") || wrapper;
@@ -423,11 +445,7 @@
     function captureCanvasPNG() {
       var canvas = mountEl.querySelector("canvas");
       if (!canvas) { alert("Kanvas 3D belum siap."); return null; }
-      try {
-        return canvas.toDataURL("image/png");
-      } catch (e) {
-        return null;
-      }
+      try { return canvas.toDataURL("image/png"); } catch (e) { return null; }
     }
 
     function generateLabReportPDF() {
@@ -460,7 +478,6 @@
       win.document.close();
     }
 
-    // Ditempatkan DI ATAS wrapper simulasi agar tidak menumpuk tombol bawaan kanvas (seperti TEMBAK BERKAS / FULLSCREEN)
     if (!mountEl.querySelector(".f3d-canvas-toolbar")) {
       var tb = document.createElement("div");
       tb.className = "f3d-canvas-toolbar";
@@ -470,11 +487,8 @@
         '<button type="button" class="f3d-tb-btn" id="f3d-btn-fs" title="Layar Penuh Simulasi (Pintasan: F)">🖥️ Fullscreen</button>' +
         '<button type="button" class="f3d-tb-btn" id="f3d-btn-pdf" title="Buat Laporan Praktikum PDF">📄 Laporan PDF</button>';
 
-      if (wrapper && wrapper.parentNode) {
-        wrapper.parentNode.insertBefore(tb, wrapper);
-      } else {
-        mountEl.prepend(tb);
-      }
+      if (wrapper && wrapper.parentNode) wrapper.parentNode.insertBefore(tb, wrapper);
+      else mountEl.prepend(tb);
 
       document.getElementById("f3d-btn-shot").onclick = function() {
         var url = captureCanvasPNG();
@@ -504,7 +518,6 @@
       document.getElementById("f3d-btn-pdf").onclick = generateLabReportPDF;
     }
 
-    // Grafik Real-Time Chart.js + Perekam Telemetri Otomatis
     if (!mountEl.querySelector(".f3d-chart-box")) {
       var chartBox = document.createElement("div");
       chartBox.className = "f3d-chart-box";
@@ -576,7 +589,6 @@
       }, 500);
     }
 
-    // Lembar Kerja Mahasiswa (LKM) 3 Tab
     if (!mountEl.querySelector(".f3d-lkm-box")) {
       var snapInit = readLiveSnapshot();
       var sliderNames = snapInit.params.map(function(p) { return "<strong>" + p.label + "</strong>"; }).join(", ") || "parameter simulasi";
@@ -635,7 +647,6 @@
       };
     }
 
-    // Paksa Three.js menyesuaikan ulang rasio aspek kanvas setelah layout mobile/desktop terpasang
     setTimeout(function() { window.dispatchEvent(new Event("resize")); }, 150);
     setTimeout(function() { window.dispatchEvent(new Event("resize")); }, 600);
   }
@@ -712,6 +723,13 @@
       document.body.classList.add("f3d-embed-mode");
     }
 
+    // Perbarui label jumlah modul statis 27 -> 37 di halaman jika masih tertulis 27
+    document.querySelectorAll("a, span, div, h1, h2, p").forEach(function(el) {
+      if (el.children.length === 0 && el.textContent.indexOf("27 Modul") !== -1) {
+        el.textContent = el.textContent.replace(/27 Modul/g, "37 Modul");
+      }
+    });
+
     var picker = document.getElementById("theme-color-picker");
     var btnReset = document.getElementById("btn-reset-theme");
     if (picker) {
@@ -736,13 +754,13 @@
 
     var notice = document.getElementById("system-announcement");
     var btnCloseNotice = document.getElementById("btn-close-announcement");
-    if (notice && localStorage.getItem("fdNoticeDismissed") !== "v23-gh") {
+    if (notice && localStorage.getItem("fdNoticeDismissed") !== "v37-gh") {
       notice.style.display = "block";
     }
     if (btnCloseNotice) {
       btnCloseNotice.addEventListener("click", function() {
         notice.style.display = "none";
-        localStorage.setItem("fdNoticeDismissed", "v23-gh");
+        localStorage.setItem("fdNoticeDismissed", "v37-gh");
       });
     }
 
@@ -823,7 +841,7 @@
 
     var featBox = document.getElementById("f3d-featured-container");
     if (featBox) {
-      var featIds = [18, 20, 22, 23, 26];
+      var featIds = [18, 20, 22, 28, 30, 34, 37];
       featBox.innerHTML = featIds.map(function(id) {
         var m = list.find(function(x) { return x.id === id; });
         if (!m) return "";
@@ -865,7 +883,7 @@
       var scriptPath = "modules/modul-" + padNum(modObj.id) + ".js";
       ensureThree().then(function() {
         var modScript = document.createElement("script");
-        modScript.src = scriptPath + "?v=5";
+        modScript.src = scriptPath + "?v=6";
         modScript.onload = function() {
           setTimeout(function() {
             enhanceLoadedModule(modObj, mountEl);
@@ -894,7 +912,7 @@
             '<span class="f3d-nav-title">' + prev.title + '</span>' +
             '<span class="f3d-nav-cat">' + (prev.catLabel || prev.cat) + '</span>' +
           '</a>' +
-          '<a class="f3d-nav-hub" href="index.html">KATALOG<br/>27 MODUL</a>' +
+          '<a class="f3d-nav-hub" href="index.html">KATALOG<br/>37 MODUL</a>' +
           '<a class="f3d-nav-card f3d-nav-next" href="' + next.url + '">' +
             '<span class="f3d-nav-dir">MODUL #' + padNum(next.id) + ' &#8594;</span>' +
             '<span class="f3d-nav-title">' + next.title + '</span>' +
