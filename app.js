@@ -109,14 +109,20 @@
 
   function padNum(n) { return n < 10 ? "0" + n : "" + n; }
 
-  /* 3. INJEKSI CSS GLOBAL UNTUK TOOLBAR, LKM, MODAL & MODE KELAS */
+  /* 3. INJEKSI CSS GLOBAL & RESPONSIF ANDROID/PC */
   function injectEnhancementStyles() {
     if (document.getElementById("f3d-upgrade-styles")) return;
     var css = [
-      ".f3d-canvas-toolbar { position:absolute; top:12px; right:12px; z-index:25; display:flex; flex-wrap:wrap; gap:6px; }",
-      ".f3d-tb-btn { background:rgba(8,13,24,0.82); backdrop-filter:blur(6px); border:1px solid rgba(0,229,255,0.35); color:#e2e8f0; padding:6px 10px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer; transition:all .15s ease; display:inline-flex; align-items:center; gap:4px; }",
+      "html, body { max-width: 100%; overflow-x: hidden; box-sizing: border-box; }",
+      "*, *::before, *::after { box-sizing: inherit; }",
+
+      /* Bilah Alat Lab di ATAS Simulasi (Bebas dari tumpukan tombol bawaan di dalam kanvas) */
+      ".f3d-canvas-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-bottom:10px; padding:8px 10px; background:rgba(8,13,24,0.9); border:1px solid rgba(0,229,255,0.22); border-radius:8px; }",
+      ".f3d-tb-btn { background:rgba(15,23,42,0.9); border:1px solid rgba(0,229,255,0.32); color:#e2e8f0; padding:6px 10px; border-radius:6px; font-size:11.5px; font-weight:600; cursor:pointer; transition:all .15s ease; display:inline-flex; align-items:center; justify-content:center; gap:5px; white-space:nowrap; }",
       ".f3d-tb-btn:hover { background:rgba(0,229,255,0.2); border-color:#00e5ff; color:#fff; }",
       ".f3d-tb-btn.is-active { background:#00e5ff; color:#05070a; border-color:#00e5ff; }",
+
+      /* Mode Kelas & Mode Embed */
       "body.f3d-class-mode .post-article-card { max-width:100% !important; }",
       "body.f3d-class-mode .sidebar-column { display:none !important; }",
       "body.f3d-class-mode .page-shell { grid-template-columns:1fr !important; }",
@@ -125,19 +131,41 @@
       "body.f3d-embed-mode .site-header, body.f3d-embed-mode .sidebar-column, body.f3d-embed-mode .site-footer, body.f3d-embed-mode #f3d-post-nav, body.f3d-embed-mode .module-breadcrumb { display:none !important; }",
       "body.f3d-embed-mode .page-shell { padding:8px !important; max-width:100% !important; display:block !important; }",
       "body.f3d-embed-mode .post-article-card { margin:0 !important; border-radius:10px !important; }",
-      ".f3d-lkm-box { margin-top:22px; background:rgba(10,16,28,0.85); border:1px solid rgba(0,229,255,0.22); border-radius:12px; overflow:hidden; }",
+
+      /* LKM, Grafik & Modal */
+      ".f3d-lkm-box { margin-top:20px; background:rgba(10,16,28,0.85); border:1px solid rgba(0,229,255,0.22); border-radius:12px; overflow:hidden; }",
       ".f3d-lkm-tabs { display:flex; flex-wrap:wrap; background:rgba(5,9,18,0.9); border-bottom:1px solid rgba(0,229,255,0.18); }",
-      ".f3d-lkm-tab { flex:1; min-width:140px; padding:11px 14px; background:transparent; border:none; color:#94a3b8; font-size:12.5px; font-weight:700; cursor:pointer; border-bottom:2px solid transparent; transition:all .15s; }",
+      ".f3d-lkm-tab { flex:1; min-width:120px; padding:10px 12px; background:transparent; border:none; color:#94a3b8; font-size:12px; font-weight:700; cursor:pointer; border-bottom:2px solid transparent; transition:all .15s; }",
       ".f3d-lkm-tab.is-active { color:#00e5ff; border-bottom-color:#00e5ff; background:rgba(0,229,255,0.07); }",
-      ".f3d-lkm-pane { display:none; padding:18px; color:#cbd5e1; font-size:14px; line-height:1.65; }",
+      ".f3d-lkm-pane { display:none; padding:16px; color:#cbd5e1; font-size:13.5px; line-height:1.65; }",
       ".f3d-lkm-pane.is-active { display:block; }",
-      ".f3d-eq-card { background:#060a12; border:1px solid rgba(0,229,255,0.25); border-radius:8px; padding:14px; margin:10px 0 14px; text-align:center; overflow-x:auto; color:#fff; }",
+      ".f3d-eq-card { background:#060a12; border:1px solid rgba(0,229,255,0.25); border-radius:8px; padding:12px; margin:10px 0 14px; text-align:center; overflow-x:auto; color:#fff; }",
       ".f3d-chart-box { margin-top:16px; background:#070c16; border:1px solid rgba(0,229,255,0.2); border-radius:10px; padding:12px; }",
       ".f3d-bookmark-btn { position:absolute; top:10px; right:10px; background:rgba(15,23,42,0.85); border:1px solid rgba(148,163,184,0.3); color:#94a3b8; width:28px; height:28px; border-radius:6px; cursor:pointer; font-size:14px; display:flex; align-items:center; justify-content:center; z-index:4; }",
       ".f3d-bookmark-btn.is-saved { color:#fbbf24; border-color:#fbbf24; background:rgba(251,191,36,0.12); }",
       ".f3d-modal-backdrop { position:fixed; inset:0; background:rgba(2,6,14,0.82); backdrop-filter:blur(5px); z-index:9999; display:none; align-items:center; justify-content:center; padding:16px; }",
       ".f3d-modal-backdrop.is-open { display:flex; }",
-      ".f3d-modal-card { background:#0b1220; border:1px solid rgba(0,229,255,0.35); border-radius:14px; max-width:540px; width:100%; padding:22px; color:#e2e8f0; box-shadow:0 20px 50px rgba(0,0,0,0.75); }"
+      ".f3d-modal-card { background:#0b1220; border:1px solid rgba(0,229,255,0.35); border-radius:14px; max-width:540px; width:100%; padding:20px; color:#e2e8f0; box-shadow:0 20px 50px rgba(0,0,0,0.75); }",
+
+      /* KHUSUS PERBAIKAN RESOLUSI & HEADER ANDROID / MOBILE */
+      "@media (max-width: 820px) {",
+      "  .site-header { height:auto !important; position:relative !important; }",
+      "  .header-inner { flex-direction:column !important; align-items:flex-start !important; gap:10px !important; padding:10px 12px !important; height:auto !important; }",
+      "  .brand-group { width:100% !important; display:flex !important; align-items:center !important; gap:10px !important; }",
+      "  .brand-logo { width:34px !important; height:34px !important; font-size:14px !important; flex-shrink:0 !important; }",
+      "  .brand-title { font-size:15px !important; line-height:1.2 !important; margin:0 !important; }",
+      "  .brand-sub { font-size:10.5px !important; display:block !important; line-height:1.3 !important; }",
+      "  .header-actions { width:100% !important; display:flex !important; flex-wrap:wrap !important; align-items:center !important; justify-content:flex-start !important; gap:6px !important; }",
+      "  .header-actions .header-nav-link, .header-actions .accent-pill, #f3d-lang-btn { font-size:11px !important; padding:4px 8px !important; margin:0 !important; height:auto !important; white-space:nowrap !important; }",
+      "  .page-shell { display:flex !important; flex-direction:column !important; padding:10px !important; gap:14px !important; width:100% !important; }",
+      "  .main-column, .sidebar-column, .post-article-card { width:100% !important; max-width:100% !important; min-width:0 !important; padding:12px !important; }",
+      "  .post-title { font-size:17px !important; line-height:1.35 !important; }",
+      "  .physics-sim-wrapper { display:flex !important; flex-direction:column !important; gap:12px !important; width:100% !important; }",
+      "  .control-panel, .visualization-panel { width:100% !important; max-width:100% !important; min-width:0 !important; }",
+      "  [id^='canvas-3d'] { height:330px !important; width:100% !important; }",
+      "  .f3d-canvas-toolbar { padding:6px !important; gap:5px !important; }",
+      "  .f3d-canvas-toolbar .f3d-tb-btn { flex:1 1 calc(33.33% - 6px); font-size:10.5px !important; padding:6px 6px !important; }",
+      "}"
     ].join("\n");
     var style = document.createElement("style");
     style.id = "f3d-upgrade-styles";
@@ -354,7 +382,7 @@
     }
   };
 
-  /* 6. UNIVERSAL AUTO-ENHANCER (TOOLBAR 3D, LIVE CHART, LKM & LAPORAN PDF) */
+  /* 6. UNIVERSAL AUTO-ENHANCER (TOOLBAR DI ATAS SIMULASI, LIVE CHART, LKM & LAPORAN PDF) */
   function enhanceLoadedModule(modObj, mountEl) {
     var wrapper = mountEl.querySelector(".physics-sim-wrapper");
     var visPanel = mountEl.querySelector(".visualization-panel") || wrapper;
@@ -362,7 +390,6 @@
     var cfg = window.FISIKA3D_CONFIGS[modObj.id] || { moduleSlug: modObj.slug, paramMap: {}, csvHeaders: ["Waktu_s", "Nilai"] };
     var acad = window.F3D_ACADEMIC[modObj.id] || { eq: "$$\\mathcal{H}\\psi = E\\psi$$", note: "Eksplorasi variasi parameter pada panel kontrol untuk mengamati respon fisis sistem secara real-time." };
 
-    // A. Aktifkan Auto-Telemetry CSV jika modul belum memanggil createSession secara manual
     var session = null;
     if (ctrlPanel && !ctrlPanel.querySelector(".f3d-utils-bar")) {
       session = window.Fisika3DUtils.createSession({
@@ -374,11 +401,11 @@
       });
     }
 
-    // Helper ambil snapshot nilai slider & HUD saat ini
     function readLiveSnapshot() {
       var paramsData = [];
       if (ctrlPanel) {
         ctrlPanel.querySelectorAll("input[type='range'], select").forEach(function(el) {
+          if (el.id === "f3d-preset-select") return;
           var lblEl = el.closest(".input-group") ? el.closest(".input-group").querySelector("label") : null;
           var labelName = lblEl ? lblEl.childNodes[0].textContent.trim() : (el.id || "Parameter");
           var valText = el.tagName === "SELECT" ? (el.options[el.selectedIndex] ? el.options[el.selectedIndex].text : el.value) : el.value;
@@ -393,7 +420,6 @@
       return { params: paramsData, huds: hudData };
     }
 
-    // B. Toolbar Kanvas 3D (Screenshot PNG, Fullscreen, Mode Kelas, Cetak Laporan PDF)
     function captureCanvasPNG() {
       var canvas = mountEl.querySelector("canvas");
       if (!canvas) { alert("Kanvas 3D belum siap."); return null; }
@@ -434,16 +460,21 @@
       win.document.close();
     }
 
-    if (visPanel && !visPanel.querySelector(".f3d-canvas-toolbar")) {
-      if (getComputedStyle(visPanel).position === "static") visPanel.style.position = "relative";
+    // Ditempatkan DI ATAS wrapper simulasi agar tidak menumpuk tombol bawaan kanvas (seperti TEMBAK BERKAS / FULLSCREEN)
+    if (!mountEl.querySelector(".f3d-canvas-toolbar")) {
       var tb = document.createElement("div");
       tb.className = "f3d-canvas-toolbar";
       tb.innerHTML =
         '<button type="button" class="f3d-tb-btn" id="f3d-btn-shot" title="Simpan Gambar PNG (Pintasan: P)">📸 PNG</button>' +
         '<button type="button" class="f3d-tb-btn" id="f3d-btn-class" title="Perbesar Tampilan Ruang Kelas (Pintasan: L)">🎓 Mode Kelas</button>' +
-        '<button type="button" class="f3d-tb-btn" id="f3d-btn-fs" title="Layar Penuh Kanvas (Pintasan: F)">🖥️ Fullscreen</button>' +
+        '<button type="button" class="f3d-tb-btn" id="f3d-btn-fs" title="Layar Penuh Simulasi (Pintasan: F)">🖥️ Fullscreen</button>' +
         '<button type="button" class="f3d-tb-btn" id="f3d-btn-pdf" title="Buat Laporan Praktikum PDF">📄 Laporan PDF</button>';
-      visPanel.appendChild(tb);
+
+      if (wrapper && wrapper.parentNode) {
+        wrapper.parentNode.insertBefore(tb, wrapper);
+      } else {
+        mountEl.prepend(tb);
+      }
 
       document.getElementById("f3d-btn-shot").onclick = function() {
         var url = captureCanvasPNG();
@@ -462,7 +493,7 @@
       };
 
       document.getElementById("f3d-btn-fs").onclick = function() {
-        var target = wrapper || visPanel;
+        var target = wrapper || visPanel || mountEl;
         if (!document.fullscreenElement) {
           if (target.requestFullscreen) target.requestFullscreen();
         } else {
@@ -473,16 +504,16 @@
       document.getElementById("f3d-btn-pdf").onclick = generateLabReportPDF;
     }
 
-    // C. Grafik Real-Time Chart.js + Perekam Telemetri Otomatis
+    // Grafik Real-Time Chart.js + Perekam Telemetri Otomatis
     if (!mountEl.querySelector(".f3d-chart-box")) {
       var chartBox = document.createElement("div");
       chartBox.className = "f3d-chart-box";
       chartBox.innerHTML =
-        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:4px;margin-bottom:8px;">' +
           '<span style="font-family:Orbitron,sans-serif;font-size:11px;color:#00e5ff;letter-spacing:0.6px;">📈 MONITOR TELEMETRI REAL-TIME</span>' +
-          '<span id="f3d-live-readout" style="font-size:11.5px;color:#94a3b8;">Merekam perubahan parameter & HUD...</span>' +
+          '<span id="f3d-live-readout" style="font-size:11px;color:#94a3b8;">Merekam parameter & HUD...</span>' +
         '</div>' +
-        '<div style="height:165px;position:relative;"><canvas id="f3d-telemetry-chart"></canvas></div>';
+        '<div style="height:160px;position:relative;"><canvas id="f3d-telemetry-chart"></canvas></div>';
       mountEl.appendChild(chartBox);
 
       var liveChart = null;
@@ -545,7 +576,7 @@
       }, 500);
     }
 
-    // D. Lembar Kerja Mahasiswa (LKM) 3 Tab (Teori MathJax, Prosedur, Cek Galat)
+    // Lembar Kerja Mahasiswa (LKM) 3 Tab
     if (!mountEl.querySelector(".f3d-lkm-box")) {
       var snapInit = readLiveSnapshot();
       var sliderNames = snapInit.params.map(function(p) { return "<strong>" + p.label + "</strong>"; }).join(", ") || "parameter simulasi";
@@ -553,9 +584,9 @@
       lkmBox.className = "f3d-lkm-box";
       lkmBox.innerHTML =
         '<div class="f3d-lkm-tabs">' +
-          '<button type="button" class="f3d-lkm-tab is-active" data-pane="teori">📘 Dasar Teori &amp; Persamaan</button>' +
-          '<button type="button" class="f3d-lkm-tab" data-pane="prosedur">🧪 Prosedur Eksperimen</button>' +
-          '<button type="button" class="f3d-lkm-tab" data-pane="latihan">🧮 Uji Perhitungan &amp; Galat</button>' +
+          '<button type="button" class="f3d-lkm-tab is-active" data-pane="teori">📘 Dasar Teori</button>' +
+          '<button type="button" class="f3d-lkm-tab" data-pane="prosedur">🧪 Prosedur</button>' +
+          '<button type="button" class="f3d-lkm-tab" data-pane="latihan">🧮 Cek Galat</button>' +
         '</div>' +
         '<div class="f3d-lkm-pane is-active" data-pane="teori">' +
           '<p style="margin-top:0;"><strong>Formulasi Matematis Utama:</strong></p>' +
@@ -564,15 +595,15 @@
         '</div>' +
         '<div class="f3d-lkm-pane" data-pane="prosedur">' +
           '<ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;">' +
-            '<li>Amati keadaan awal objek 3D pada kanvas. Gunakan <em>drag</em> mouse untuk memutar sudut pandang dan <em>scroll</em> untuk memperbesar detail.</li>' +
+            '<li>Amati keadaan awal objek 3D pada kanvas. Gunakan <em>drag</em> sentuh/mouse untuk memutar sudut pandang dan cubit/<em>scroll</em> untuk memperbesar detail.</li>' +
             '<li>Variasikan nilai ' + sliderNames + ' secara bertahap dan catat respon besaran pada HUD serta grafik telemetri di atas.</li>' +
-            '<li>Klik <strong>Unduh CSV</strong> pada panel kontrol untuk mengekspor deret data numerik ke spreadsheet/Python, atau klik <strong>Laporan PDF</strong> untuk dokumentasi praktikum.</li>' +
+            '<li>Klik <strong>Unduh CSV</strong> pada panel kontrol untuk mengekspor deret data numerik, atau klik <strong>Laporan PDF</strong> untuk dokumentasi praktikum.</li>' +
           '</ol>' +
         '</div>' +
         '<div class="f3d-lkm-pane" data-pane="latihan">' +
-          '<p style="margin-top:0;">Hitung secara analitik nilai besaran utama pada HUD menggunakan persamaan di tab <em>Dasar Teori</em>, lalu masukkan hasil perhitungan Anda untuk memeriksa galat relatifnya terhadap simulasi:</p>' +
+          '<p style="margin-top:0;">Hitung secara analitik nilai besaran utama pada HUD menggunakan persamaan di tab <em>Dasar Teori</em>, lalu masukkan hasilnya untuk memeriksa galat relatif terhadap simulasi:</p>' +
           '<div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">' +
-            '<input type="number" step="any" id="f3d-calc-guess" placeholder="Masukkan hasil hitungan Anda..." style="flex:1;min-width:190px;padding:8px 12px;border-radius:6px;border:1px solid #334155;background:#060a12;color:#fff;"/>' +
+            '<input type="number" step="any" id="f3d-calc-guess" placeholder="Masukkan hasil hitungan Anda..." style="flex:1;min-width:160px;padding:8px 12px;border-radius:6px;border:1px solid #334155;background:#060a12;color:#fff;"/>' +
             '<button type="button" id="f3d-calc-check" style="padding:8px 14px;border-radius:6px;border:1px solid #00e5ff;background:rgba(0,229,255,0.15);color:#00e5ff;font-weight:700;cursor:pointer;">Periksa Galat (%)</button>' +
           '</div>' +
           '<div id="f3d-calc-result" style="margin-top:10px;font-size:13px;"></div>' +
@@ -603,6 +634,10 @@
         resEl.innerHTML = '<span style="color:' + color + ';font-weight:700;">Nilai Simulasi (' + ref.text + ') &bull; Galat Relatif: ' + err.toFixed(2) + '% — ' + status + '</span>';
       };
     }
+
+    // Paksa Three.js menyesuaikan ulang rasio aspek kanvas setelah layout mobile/desktop terpasang
+    setTimeout(function() { window.dispatchEvent(new Event("resize")); }, 150);
+    setTimeout(function() { window.dispatchEvent(new Event("resize")); }, 600);
   }
 
   /* 7. MODAL JASA SIMULASI KUSTOM & AUTO-CONTEXT LAPOR BUG */
@@ -642,7 +677,6 @@
       });
     });
 
-    // Auto-Context pada tombol Lapor Bug
     document.querySelectorAll('a[href*="BUG%20REPORT"]').forEach(function(link) {
       link.addEventListener("click", function(e) {
         e.preventDefault();
@@ -674,7 +708,6 @@
     var list = window.F3D_MODULES;
     var params = new URLSearchParams(window.location.search);
 
-    // Deteksi Mode Embed Iframe (?embed=1) untuk Blogger / LMS
     if (params.get("embed") === "1") {
       document.body.classList.add("f3d-embed-mode");
     }
@@ -713,7 +746,6 @@
       });
     }
 
-    // Render Katalog 27 Modul + Fitur Bookmark Favorit di index.html
     var gridEl = document.getElementById("f3d-grid");
     var searchEl = document.getElementById("f3d-search");
     var filterBtns = document.querySelectorAll(".filter-pill[data-cat]");
@@ -721,7 +753,6 @@
       var bookmarks = [];
       try { bookmarks = JSON.parse(localStorage.getItem("f3dBookmarks") || "[]"); } catch (e) {}
 
-      // Tambahkan tombol filter "⭐ Tersimpan" otomatis jika belum ada di HTML
       var pillWrap = filterBtns.length ? filterBtns[0].parentElement : null;
       if (pillWrap && !pillWrap.querySelector('[data-cat="SAVED"]')) {
         var savedPill = document.createElement("button");
@@ -790,7 +821,6 @@
       drawCatalog();
     }
 
-    // Sidebar: 5 Modul Unggulan & Tombol Acak
     var featBox = document.getElementById("f3d-featured-container");
     if (featBox) {
       var featIds = [18, 20, 22, 23, 26];
@@ -816,7 +846,6 @@
       });
     }
 
-    // Halaman modul.html: Muat Modul Dinamis + Aktifkan Semua Fitur Upgrade
     var mountEl = document.getElementById("f3d-module-mount");
     var activeModObj = null;
     if (mountEl) {
@@ -836,7 +865,7 @@
       var scriptPath = "modules/modul-" + padNum(modObj.id) + ".js";
       ensureThree().then(function() {
         var modScript = document.createElement("script");
-        modScript.src = scriptPath + "?v=4";
+        modScript.src = scriptPath + "?v=5";
         modScript.onload = function() {
           setTimeout(function() {
             enhanceLoadedModule(modObj, mountEl);
@@ -854,7 +883,6 @@
         document.body.appendChild(modScript);
       });
 
-      // Navigasi Prev / Katalog 27 Modul / Next
       var navEl = document.getElementById("f3d-post-nav");
       var idx = list.findIndex(function(m) { return m.id === modObj.id; });
       var prev = list[(idx - 1 + list.length) % list.length];
@@ -874,7 +902,6 @@
           '</a>';
       }
 
-      // Pintasan Keyboard Global (F = Fullscreen, P = PNG, L = Mode Kelas, Panah Kiri/Kanan = Pindah Modul)
       document.addEventListener("keydown", function(e) {
         if (["INPUT", "TEXTAREA", "SELECT"].indexOf(document.activeElement.tagName) !== -1) return;
         if (e.key === "f" || e.key === "F") {
