@@ -213,3 +213,159 @@
     }
   });
 })();
+/* === GITHUB LAB UX UPGRADES (addons.js extension) === */
+const FuWorkbench = (() => {
+  // 1. Deep-Link Parameter Sync (?mod=nama_modul&v0=30&angle=45)
+  function initUrlStateSync(containerSelector = '#controls-container') {
+    const container = document.querySelector(containerSelector);
+    if (!container) return;
+
+    const url = new URL(window.location.href);
+    const inputs = container.querySelectorAll('input[type="range"], select');
+
+    // Muat parameter dari URL saat modul dibuka
+    inputs.forEach((el) => {
+      const key = el.id || el.name;
+      if (key && url.searchParams.has(key)) {
+        el.value = url.searchParams.get(key);
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+      }
+
+      // Sinkronkan URL + highlight simbol rumus saat slider digeser
+      el.addEventListener('input', () => {
+        if (key) {
+          const nextUrl = new URL(window.location.href);
+          nextUrl.searchParams.set(key, el.value);
+          window.history.replaceState({}, '', nextUrl.toString());
+        }
+        highlightFormulaSymbol(el.dataset.symbol || key);
+      });
+    });
+  }
+
+  function copyExperimentUrl(btnEl) {
+    navigator.clipboard?.writeText(window.location.href);
+    if (btnEl) {
+      const prev = btnEl.textContent;
+      btnEl.textContent = '✓ Link Eksperimen Disalin';
+      setTimeout(() => (btnEl.textContent = prev), 1800);
+    }
+  }
+
+  // 2. Live Formula Variable Highlight
+  let highlightTimer = null;
+  function highlightFormulaSymbol(symbol) {
+    if (!symbol) return;
+    document.querySelectorAll('.fu-formula-math [data-sym]').forEach((el) => {
+      el.classList.toggle('is-highlighted', el.dataset.sym === symbol);
+    });
+    clearTimeout(highlightTimer);
+    highlightTimer = setTimeout(() => {
+      document.querySelectorAll('.fu-formula-math [data-sym]').forEach((el) => {
+        el.classList.remove('is-highlighted');
+      });
+    }, 1200);
+  }
+
+  // 3. A/B Experiment Run Comparison (localStorage per modul)
+  function saveRunSnapshot(moduleId, metricsObj) {
+    const storageKey = `fu_runs_${moduleId || 'default'}`;
+    const existing = JSON.parse(localStorage.getItem(storageKey) || '[]');
+    existing.unshift({
+      timestamp: new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+      metrics: metricsObj
+    });
+    localStorage.setItem(storageKey, JSON.stringify(existing.slice(0, 5))); // Simpan 5 run terakhir
+    return existing.slice(0, 5);
+  }
+
+  function getRunSnapshots(moduleId) {
+    return JSON.parse(localStorage.getItem(`fu_runs_${moduleId || 'default'}`) || '[]');
+  }
+
+  // 4. Keyboard Lab Shortcuts (Space: Play/Pause, R: Reset, F: Focus, S: Slow-Mo)
+  function initLabShortcuts(handlers = {}) {
+    document.addEventListener('keydown', (e) => {
+      const tag = document.activeElement?.tagName;
+      if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+      if (e.code === 'Space') {
+        e.preventDefault();
+        handlers.onTogglePlay?.();
+      } else if (e.key.toLowerCase() === 'r') {
+        handlers.onReset?.();
+      } else if (e.key.toLowerCase() === 'f') {
+        handlers.onToggleFocus?.();
+      } else if (e.key.toLowerCase() === 's') {
+        handlers.onToggleSlowMo?.();
+      }
+    });
+  }
+
+  // 5. Command Palette Search (Ctrl+K atau '/') untuk index.html
+  function initCommandPalette(modules = []) {
+    const backdrop = document.getElementById('fu-cmd-backdrop');
+    const input = document.getElementById('fu-cmd-input');
+    const list = document.getElementById('fu-cmd-list');
+    if (!backdrop || !input || !list) return;
+
+    function render(query = '') {
+      const q = query.toLowerCase().trim();
+      const hits = modules.filter(
+        (m) =>
+          m.title.toLowerCase().includes(q) ||
+          (m.category && m.category.toLowerCase().includes(q)) ||
+          (m.formula && m.formula.toLowerCase().includes(q))
+      );
+
+      list.innerHTML = hits.length
+        ? hits
+            .map(
+              (m) => `
+            <a class="fu-cmd-item" href="modul.html?mod=${encodeURIComponent(m.id)}">
+              <span><strong>${m.title}</strong> <small style="color:#94a3b8;">${m.formula || ''}</small></span>
+              <span style="font-size:11px; color:#00f0ff;">${m.category || 'Lab'}</span>
+            </a>`
+            )
+            .join('')
+        : `<div style="padding:12px; color:#94a3b8; font-size:13px;">Modul tidak ditemukan.</div>`;
+    }
+
+    function open() {
+      backdrop.classList.add('is-open');
+      input.value = '';
+      render('');
+      input.focus();
+    }
+
+    function close() {
+      backdrop.classList.remove('is-open');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        backdrop.classList.contains('is-open') ? close() : open();
+      } else if (e.key === 'Escape') {
+        close();
+      }
+    });
+
+    backdrop.addEventListener('click', (e) => {
+      if (e.target === backdrop) close();
+    });
+    input.addEventListener('input', () => render(input.value));
+
+    return { open, close };
+  }
+
+  return {
+    initUrlStateSync,
+    copyExperimentUrl,
+    highlightFormulaSymbol,
+    saveRunSnapshot,
+    getRunSnapshots,
+    initLabShortcuts,
+    initCommandPalette
+  };
+})();
