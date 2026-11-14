@@ -34,6 +34,36 @@
     26: [
       { name: "Harmonik Klasik (n = 3, m = 5)", values: { "n-slider": 3, "m-slider": 5 } },
       { name: "Pola Bintang Simetri Tinggi (n = 6, m = 8)", values: { "n-slider": 6, "m-slider": 8 } }
+    ],
+    28: [
+      { name: "Foton Anihilasi Positron (511 keV, θ = 90°)", values: { "energy-slider": 511, "angle-slider": 90 } },
+      { name: "Hambur Balik Cs-137 (662 keV, θ = 180°)", values: { "energy-slider": 662, "angle-slider": 180 } }
+    ],
+    30: [
+      { name: "Resonansi Rabi Penuh (Δ = 0 MHz)", values: { "rabi-slider": 2.5, "detuning-slider": 0.0 } },
+      { name: "Presesi Off-Resonance (Δ = 3.0 MHz)", values: { "rabi-slider": 1.5, "detuning-slider": 3.0 } }
+    ],
+    31: [
+      { name: "Konduktor Logam (Eg = 0.0 eV)", values: { "gap-slider": 0.0, "temp-slider": 300 } },
+      { name: "Silikon Kristal (Eg = 1.1 eV, T = 300 K)", values: { "gap-slider": 1.1, "temp-slider": 300 } },
+      { name: "Isolator Intan / Kuarsa (Eg = 3.4 eV)", values: { "gap-slider": 3.4, "temp-slider": 300 } }
+    ],
+    32: [
+      { name: "Tendangan Pisang Roberto Carlos (v = 38 m/s, ω = 65)", values: { "speed-slider": 38, "spin-slider": 65, "angle-slider": 14 } },
+      { name: "Tendangan Lurus Tanpa Spin (ω = 0)", values: { "speed-slider": 30, "spin-slider": 0, "angle-slider": 20 } }
+    ],
+    34: [
+      { name: "Penggabungan Bintang Neutron GW170817", values: { "mass-slider": 12, "sep-slider": 220 } },
+      { name: "Lubang Hitam Biner GW150914 (60 M☉)", values: { "mass-slider": 60, "sep-slider": 350 } }
+    ],
+    35: [
+      { name: "Laser Hijau Nd:YAG (λ = 532 nm)", values: { "lambda-slider": 532, "mirror-slider": 266 } },
+      { name: "Laser Merah He-Ne (λ = 632 nm)", values: { "lambda-slider": 632, "mirror-slider": 632 } }
+    ],
+    37: [
+      { name: "Fase Teratur Feromagnetik (T = 2.0 < Tc)", values: { "temp-slider": 2.0, "field-slider": 0.0 } },
+      { name: "Titik Kritis Curie (Tc ≈ 4.51)", values: { "temp-slider": 4.5, "field-slider": 0.0 } },
+      { name: "Fase Acak Paramagnetik (T = 6.8 > Tc)", values: { "temp-slider": 6.8, "field-slider": 0.0 } }
     ]
   };
 
@@ -74,7 +104,6 @@
       });
     }
 
-    // Hanya tampilkan tombol Rekam Video jika browser mendukung captureStream & MediaRecorder
     var supportsRec = typeof MediaRecorder !== "undefined" &&
                       typeof HTMLCanvasElement !== "undefined" &&
                       typeof HTMLCanvasElement.prototype.captureStream === "function";
@@ -132,7 +161,8 @@
 
     function applyLang(targetLang) {
       var dict = targetLang === "EN" ? {
-        "Katalog 27 Modul": "27 Modules",
+        "Katalog 37 Modul": "37 Modules",
+        "Katalog 27 Modul": "37 Modules",
         "Lapor Bug": "Report Bug",
         "BUKA SIMULASI 3D ACAK": "🎲 RANDOM 3D SIMULATION",
         "Lompat acak lintas topik fisika": "Jump randomly across physics topics",
@@ -140,7 +170,7 @@
         "Kategori Materi": "Categories",
         "Pengembang": "Developer"
       } : {
-        "27 Modules": "Katalog 27 Modul",
+        "37 Modules": "Katalog 37 Modul",
         "Report Bug": "Lapor Bug",
         "🎲 RANDOM 3D SIMULATION": "🎲 BUKA SIMULASI 3D ACAK",
         "Jump randomly across physics topics": "Lompat acak lintas topik fisika",
