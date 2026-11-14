@@ -6,13 +6,20 @@
   <title>Modul Simulasi 3D — Fisika Developer</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css?v=3"/>
+
+  <!-- Pustaka Inti 3D & Grafik (Dimuat langsung sebelum modul dijalankan) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS3DRenderer.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
   <script>
     window.MathJax = {
       tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
       options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
     };
-<script src="./app.js"></script>
   </script>
   <script async id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script>
@@ -109,9 +116,9 @@
   </div>
 
   <footer class="site-footer">
-    <strong>FISIKA DEVELOPER</strong> &#8212; Portal Simulasi Fisika Komputasi 3D &#8226; <a href="index.html">Beranda</a> &#8226; <a href="https://github.com/EjenAli1/fisika-developer" target="_blank" rel="noopener">GitHub Repo</a> &#8226; <a href="mailto:ian479872@gmail.com?subject=%5BBUG%20REPORT%5D">Lapor Bug</a>
+    <strong>FISIKA DEVELOPER</strong> &#8212; Portal Simulasi Fisika Komputasi 3D &#8226; <a href="index.html">Beranda</a> &#8226; <a href="https://github.com/EjenAli1/fisika-developer-clone" target="_blank" rel="noopener">GitHub Repo</a> &#8226; <a href="mailto:ian479872@gmail.com?subject=%5BBUG%20REPORT%5D">Lapor Bug</a>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=3"></script>
 </body>
 </html>
