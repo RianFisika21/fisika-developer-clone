@@ -65,7 +65,7 @@
 
   function padNum(n) { return n < 10 ? "0" + n : "" + n; }
 
-  /* 3. LAZY LOADER THREE.JS & HEMAT GPU */
+  /* 3. LAZY LOADER THREE.JS, CHART.JS & HEMAT GPU */
   var MAX_ACTIVE_CONTEXTS = 3;
   var activeRegistry = [];
   var libsPromise = null;
@@ -74,12 +74,15 @@
   var THREE_SCRIPTS = [
     "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
     "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js",
+    "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS2DRenderer.js",
+    "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS3DRenderer.js",
     "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js",
     "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js",
     "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/ShaderPass.js",
     "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js",
     "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js",
-    "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"
+    "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js",
+    "https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"
   ];
 
   document.addEventListener("visibilitychange", function() { isTabVisible = !document.hidden; });
@@ -98,7 +101,9 @@
   }
 
   function ensureThree() {
-    if (window.THREE && window.THREE.UnrealBloomPass) return Promise.resolve();
+    if (window.THREE && window.THREE.OrbitControls && window.THREE.UnrealBloomPass && window.Chart) {
+      return Promise.resolve();
+    }
     if (!libsPromise) libsPromise = loadSeq(THREE_SCRIPTS);
     return libsPromise;
   }
@@ -361,7 +366,7 @@
       });
     }
 
-    // Halaman modul.html: Muat Modul Dinamis dari folder modules/modul-XX.js
+    // Halaman modul.html: Pastikan Three.js & Chart.js selesai dimuat DULU baru jalankan modules/modul-XX.js
     var mountEl = document.getElementById("f3d-module-mount");
     if (mountEl) {
       var reqId = parseInt(params.get("id"), 10);
@@ -377,27 +382,30 @@
       if (badgeEl) badgeEl.textContent = modObj.catLabel || modObj.cat;
 
       var scriptPath = "modules/modul-" + padNum(modObj.id) + ".js";
-      var modScript = document.createElement("script");
-      modScript.src = scriptPath;
-      modScript.onload = function() {
-        if (document.querySelector(".post-body canvas") && !window.Chart) {
-          var cs = document.createElement("script");
-          cs.src = "https://cdn.jsdelivr.net/npm/chart.js";
-          cs.async = true;
-          document.head.appendChild(cs);
-        }
-        if (window.MathJax && window.MathJax.typesetPromise) {
-          window.MathJax.typesetPromise([mountEl]).catch(function() {});
-        }
-      };
-      modScript.onerror = function() {
+      mountEl.innerHTML = '<p style="color:var(--text-secondary);">Memuat pustaka grafis 3D (Three.js)...</p>';
+
+      ensureThree().then(function() {
+        var modScript = document.createElement("script");
+        modScript.src = scriptPath;
+        modScript.onload = function() {
+          if (window.MathJax && window.MathJax.typesetPromise) {
+            window.MathJax.typesetPromise([mountEl]).catch(function() {});
+          }
+        };
+        modScript.onerror = function() {
+          mountEl.innerHTML =
+            '<div style="padding:18px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:10px;">' +
+              '<p style="margin:0 0 8px;color:#fbbf24;font-weight:600;">File skrip modul <code>' + scriptPath + '</code> belum diunggah ke repositori.</p>' +
+              '<p style="margin:0;font-size:13.5px;color:var(--text-secondary);">Jalankan <code>python convert_modul.py</code> pada folder hasil ekstrak <code>Modul.rar</code> lalu push folder <code>modules/</code> ke GitHub.</p>' +
+            '</div>';
+        };
+        document.body.appendChild(modScript);
+      }).catch(function() {
         mountEl.innerHTML =
-          '<div style="padding:18px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:10px;">' +
-            '<p style="margin:0 0 8px;color:#fbbf24;font-weight:600;">File skrip modul <code>' + scriptPath + '</code> belum diunggah ke repositori.</p>' +
-            '<p style="margin:0;font-size:13.5px;color:var(--text-secondary);">Jalankan <code>python convert_modul.py</code> pada folder hasil ekstrak <code>Modul.rar</code> lalu push folder <code>modules/</code> ke GitHub.</p>' +
+          '<div style="padding:18px;background:var(--bg-elevated);border:1px solid rgba(248,113,113,0.4);border-radius:10px;color:#f87171;">' +
+            'Gagal memuat pustaka Three.js dari CDN. Periksa koneksi internet atau blokir skrip browser Anda.' +
           '</div>';
-      };
-      document.body.appendChild(modScript);
+      });
 
       // Navigasi Prev / Katalog 27 Modul / Next
       var navEl = document.getElementById("f3d-post-nav");
