@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ejenali1.github.io/fisika-developer-clone/sitemap.xml
