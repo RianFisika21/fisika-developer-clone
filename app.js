@@ -768,6 +768,7 @@
     var searchEl = document.getElementById("f3d-search");
     var filterBtns = document.querySelectorAll(".filter-pill[data-cat]");
     if (gridEl) {
+      var MAX_DEFAULT_MODULES = 9;
       var bookmarks = [];
       try { bookmarks = JSON.parse(localStorage.getItem("f3dBookmarks") || "[]"); } catch (e) {}
 
@@ -781,6 +782,100 @@
         pillWrap.appendChild(savedPill);
         filterBtns = document.querySelectorAll(".filter-pill[data-cat]");
       }
+
+      var currentCat = params.get("cat") || "ALL";
+      filterBtns.forEach(function(b) {
+        if (b.getAttribute("data-cat") === currentCat) b.classList.add("is-active");
+        else b.classList.remove("is-active");
+      });
+
+      var hintEl = document.getElementById("f3d-grid-hint");
+      if (!hintEl) {
+        hintEl = document.createElement("div");
+        hintEl.id = "f3d-grid-hint";
+        hintEl.style.cssText = "margin-top:16px;padding:12px 14px;background:var(--bg-elevated);border:1px dashed var(--border-subtle);border-radius:8px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--text-secondary);";
+        gridEl.parentNode.insertBefore(hintEl, gridEl.nextSibling);
+      }
+
+      function drawCatalog() {
+        var q = (searchEl ? searchEl.value : "").toLowerCase().trim();
+        var isDefaultView = (currentCat === "ALL" && !q);
+
+        var matched = list.filter(function(m) {
+          var okCat = currentCat === "ALL" || (currentCat === "SAVED" ? bookmarks.indexOf(m.id) !== -1 : m.cat === currentCat);
+          var okQ = !q ||
+            m.title.toLowerCase().indexOf(q) !== -1 ||
+            m.desc.toLowerCase().indexOf(q) !== -1 ||
+            (m.catLabel && m.catLabel.toLowerCase().indexOf(q) !== -1) ||
+            ("#" + m.id).indexOf(q) !== -1 ||
+            ("#" + padNum(m.id)).indexOf(q) !== -1;
+          return okCat && okQ;
+        });
+
+        var visibleItems = isDefaultView ? matched.slice(0, MAX_DEFAULT_MODULES) : matched;
+
+        if (!visibleItems.length) {
+          gridEl.innerHTML = '<div style="grid-column:1/-1;padding:24px;text-align:center;color:#94a3b8;background:rgba(15,23,42,0.5);border-radius:10px;">Tidak ada modul yang sesuai filter atau daftar tersimpan masih kosong.</div>';
+          hintEl.style.display = "none";
+          return;
+        }
+
+        gridEl.innerHTML = visibleItems.map(function(m) {
+          var isSaved = bookmarks.indexOf(m.id) !== -1;
+          return '<div style="position:relative;display:flex;">' +
+            '<button type="button" class="f3d-bookmark-btn' + (isSaved ? ' is-saved' : '') + '" data-bm-id="' + m.id + '" title="Simpan ke Favorit">' + (isSaved ? '★' : '☆') + '</button>' +
+            '<a class="module-card" href="' + m.url + '" style="flex:1;">' +
+              '<div>' +
+                '<div class="module-card-top" style="padding-right:32px;"><span class="module-id">#' + padNum(m.id) + '</span><span class="module-tag">' + (m.catLabel || m.cat) + '</span></div>' +
+                '<div class="module-card-title">' + m.title + '</div>' +
+                '<p class="module-card-desc">' + m.desc + '</p>' +
+              '</div>' +
+              '<div class="module-card-cta">BUKA SIMULASI &#8594;</div>' +
+            '</a>' +
+          '</div>';
+        }).join("");
+
+        gridEl.querySelectorAll(".f3d-bookmark-btn").forEach(function(btn) {
+          btn.addEventListener("click", function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var id = parseInt(btn.getAttribute("data-bm-id"), 10);
+            var pos = bookmarks.indexOf(id);
+            if (pos === -1) bookmarks.push(id); else bookmarks.splice(pos, 1);
+            localStorage.setItem("f3dBookmarks", JSON.stringify(bookmarks));
+            drawCatalog();
+          });
+        });
+
+        if (isDefaultView && matched.length > MAX_DEFAULT_MODULES) {
+          var hiddenCount = matched.length - MAX_DEFAULT_MODULES;
+          hintEl.style.display = "flex";
+          hintEl.innerHTML =
+            '<span>Menampilkan <strong>' + MAX_DEFAULT_MODULES + '</strong> dari <strong>' + matched.length + '</strong> modul. Gunakan kolom pencarian atau filter kategori untuk menjelajahi <strong>' + hiddenCount + ' modul lainnya</strong>.</span>' +
+            '<button type="button" id="f3d-focus-search" style="padding:6px 12px;background:rgba(var(--accent-rgb),0.12);border:1px solid rgba(var(--accent-rgb),0.4);color:var(--accent);border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;">🔍 Cari Modul Lainnya</button>';
+          var btnFocus = document.getElementById("f3d-focus-search");
+          if (btnFocus && searchEl) {
+            btnFocus.onclick = function() {
+              searchEl.scrollIntoView({ behavior: "smooth", block: "center" });
+              searchEl.focus();
+            };
+          }
+        } else {
+          hintEl.style.display = "none";
+        }
+      }
+
+      filterBtns.forEach(function(btn) {
+        btn.addEventListener("click", function() {
+          currentCat = btn.getAttribute("data-cat");
+          filterBtns.forEach(function(b) { b.classList.remove("is-active"); });
+          btn.classList.add("is-active");
+          drawCatalog();
+        });
+      });
+      if (searchEl) searchEl.addEventListener("input", drawCatalog);
+      drawCatalog();
+    }
 
       var currentCat = params.get("cat") || "ALL";
       filterBtns.forEach(function(b) {
