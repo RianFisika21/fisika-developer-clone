@@ -129,5 +129,108 @@
     <div class="fu-cmd-list" id="fu-cmd-list"></div>
   </div>
 </div>
+  <!-- === WIDGET STATISTIK PENGUNJUNG FISIKA UNIVERSAL === -->
+<div class="fu-vc-bar" id="fuVisitorWidget" aria-label="Statistik Pengunjung">
+  <div class="fu-vc-item">
+    <span class="fu-vc-pulse"></span>
+    <span class="fu-vc-label">Status:</span>
+    <span class="fu-vc-val fu-vc-online">Online</span>
+  </div>
+  <span class="fu-vc-sep">|</span>
+  <div class="fu-vc-item">
+    <span class="fu-vc-label">Hari Ini:</span>
+    <strong class="fu-vc-val" id="fuVcToday">...</strong>
+  </div>
+  <span class="fu-vc-sep">|</span>
+  <div class="fu-vc-item">
+    <span class="fu-vc-label">Total Kunjungan:</span>
+    <strong class="fu-vc-val" id="fuVcTotal">...</strong>
+  </div>
+</div>
+
+<style>
+  .fu-vc-bar {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 8px 16px;
+    margin: 16px auto;
+    background: #0b0f19;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 999px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 12px;
+    color: #94a3b8;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+  .fu-vc-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .fu-vc-val {
+    color: #38bdf8;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .fu-vc-online {
+    color: #10b981;
+  }
+  .fu-vc-sep {
+    color: rgba(255, 255, 255, 0.15);
+  }
+  .fu-vc-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0.6);
+    animation: fuVcPulse 2s infinite;
+  }
+  @keyframes fuVcPulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+</style>
+
+<script>
+  (function () {
+    // Ganti NAMESPACE dengan nama unik milikmu agar tidak tercampur dengan situs lain
+    const NAMESPACE = 'fisika-universal-github';
+    const todayStr = new Date().toISOString().slice(0, 10); // Format: YYYY-MM-DD
+    const totalKey = 'total-visits';
+    const dailyKey = 'daily-' + todayStr;
+
+    const elTotal = document.getElementById('fuVcTotal');
+    const elToday = document.getElementById('fuVcToday');
+
+    // Cek sessionStorage agar refresh halaman (F5) oleh orang yang sama tidak menggandakan hitungan
+    const isNewSession = !sessionStorage.getItem('fu_vc_counted_' + todayStr);
+    const action = isNewSession ? '/up' : '/';
+
+    async function fetchCount(key, targetEl) {
+      try {
+        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${key}${action}`);
+        if (!res.ok) throw new Error('Network error');
+        const data = await res.json();
+        targetEl.textContent = Number(data.count || 0).toLocaleString('id-ID');
+      } catch (err) {
+        targetEl.textContent = '1';
+      }
+    }
+
+    Promise.all([
+      fetchCount(totalKey, elTotal),
+      fetchCount(dailyKey, elToday)
+    ]).then(() => {
+      if (isNewSession) {
+        sessionStorage.setItem('fu_vc_counted_' + todayStr, '1');
+      }
+    });
+  })();
+</script>
 </body>
 </html>
