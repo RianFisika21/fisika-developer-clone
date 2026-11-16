@@ -725,7 +725,7 @@
 
     // Perbarui label jumlah modul statis 27 -> 37 di halaman jika masih tertulis 27
     document.querySelectorAll("a, span, div, h1, h2, p").forEach(function(el) {
-      if (el.children.length === 0 && el.textContent.indexOf("27 Modul") !== -1) {
+      if (el.children.length === 0 && el.textContent.indexOf("37 Modul") !== -1) {
         el.textContent = el.textContent.replace(/27 Modul/g, "37 Modul");
       }
     });
