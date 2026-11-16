@@ -35,7 +35,7 @@
       </div>
 
       <div class="header-actions">
-        <a class="header-nav-link active" href="index.html">Katalog 27 Modul</a>
+        <a class="header-nav-link active" href="index.html">Katalog 37 Modul</a>
         <a class="header-nav-link" href="mailto:ian479872@gmail.com?subject=%5BBUG%20REPORT%5D%20Fisika%20Developer" title="Laporkan Kendala Simulasi">Lapor Bug</a>
         <div class="accent-pill" title="Ubah Warna Aksen">
           <input id="theme-color-picker" type="color" value="#00e5ff"/>
@@ -65,7 +65,7 @@
         </div>
 
         <div class="filter-pills" id="f3d-filters">
-          <button class="filter-pill is-active" data-cat="ALL" type="button">Semua (27)</button>
+          <button class="filter-pill is-active" data-cat="ALL" type="button">Semua (37)</button>
           <button class="filter-pill" data-cat="Radiasi" type="button">Radiasi, Nuklir &amp; Medis</button>
           <button class="filter-pill" data-cat="Plasma" type="button">Plasma, Fluida &amp; Termal</button>
           <button class="filter-pill" data-cat="Kuantum" type="button">Kuantum &amp; Zat Padat</button>
@@ -81,7 +81,7 @@
       <div class="card-box">
         <h3 class="card-heading">
           <span>Eksplorasi 3D</span>
-          <span style="font-size:10px;color:var(--mint);">27 MODUL</span>
+          <span style="font-size:10px;color:var(--mint);">37 MODUL</span>
         </h3>
         <button class="btn-random-sim" id="f3d-btn-random" type="button">🎲 BUKA SIMULASI 3D ACAK</button>
         <div class="random-status" id="f3d-rand-msg">Lompat acak lintas topik fisika</div>
@@ -129,7 +129,7 @@
     <div class="fu-cmd-list" id="fu-cmd-list"></div>
   </div>
 </div>
-  <!-- === WIDGET STATISTIK PENGUNJUNG FISIKA UNIVERSAL === -->
+  <!-- === WIDGET STATISTIK PENGUNJUNG (RATA TENGAH) === -->
 <div class="fu-vc-bar" id="fuVisitorWidget" aria-label="Statistik Pengunjung">
   <div class="fu-vc-item">
     <span class="fu-vc-pulse"></span>
@@ -150,13 +150,15 @@
 
 <style>
   .fu-vc-bar {
-    display: inline-flex;
+    display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    width: fit-content;
+    max-width: calc(100% - 32px);
     gap: 10px;
-    padding: 8px 16px;
-    margin: 16px auto;
+    padding: 8px 18px;
+    margin: 20px auto;
     background: #0b0f19;
     border: 1px solid rgba(56, 189, 248, 0.25);
     border-radius: 999px;
@@ -198,16 +200,14 @@
 
 <script>
   (function () {
-    // Ganti NAMESPACE dengan nama unik milikmu agar tidak tercampur dengan situs lain
     const NAMESPACE = 'fisika-universal-github';
-    const todayStr = new Date().toISOString().slice(0, 10); // Format: YYYY-MM-DD
+    const todayStr = new Date().toISOString().slice(0, 10);
     const totalKey = 'total-visits';
     const dailyKey = 'daily-' + todayStr;
 
     const elTotal = document.getElementById('fuVcTotal');
     const elToday = document.getElementById('fuVcToday');
 
-    // Cek sessionStorage agar refresh halaman (F5) oleh orang yang sama tidak menggandakan hitungan
     const isNewSession = !sessionStorage.getItem('fu_vc_counted_' + todayStr);
     const action = isNewSession ? '/up' : '/';
 
