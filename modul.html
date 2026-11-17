@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css?v=3"/>
-    <link rel="stylesheet" href="lab-upgrade.css"/>
+  <link rel="stylesheet" href="lab-upgrade.css"/>
   <script src="js/seo.js" defer></script>
   <script src="js/a11y.js" defer></script>
 
@@ -72,9 +72,14 @@
           <span class="module-tag" id="f3d-mod-badge">MODUL 3D</span>
         </div>
         <h1 class="post-title" id="f3d-mod-title">Memuat Modul Simulasi 3D...</h1>
-        <div class="post-body" id="f3d-module-mount">
-          <p style="color:var(--text-secondary);">Menginisialisasi ruang kerja simulasi interaktif...</p>
+
+        <div class="fu-workbench">
+          <div class="post-body fu-stage-card" id="f3d-module-mount">
+            <p style="color:var(--text-secondary);">Menginisialisasi ruang kerja simulasi interaktif...</p>
+          </div>
+          <aside class="fu-sidebar-controls" id="f3d-sidebar-controls"></aside>
         </div>
+
         <div id="f3d-post-nav"></div>
       </article>
 
@@ -151,15 +156,36 @@
     </div>
   </div>
 
+  <!-- SINKRONISASI OTOMATIS .control-panel KE .fu-sidebar-controls -->
+  <script>
+    (function () {
+      const mount = document.getElementById('f3d-module-mount');
+      const sidebar = document.getElementById('f3d-sidebar-controls');
+      if (!mount || !sidebar) return;
+
+      function syncControlPanel() {
+        const panel = mount.querySelector('.control-panel');
+        if (panel && panel.parentElement !== sidebar) {
+          sidebar.appendChild(panel);
+        }
+        sidebar.style.display = sidebar.children.length > 0 ? '' : 'none';
+      }
+
+      syncControlPanel();
+      const observer = new MutationObserver(syncControlPanel);
+      observer.observe(mount, { childList: true, subtree: true });
+    })();
+  </script>
+
   <!-- === ADSTERRA BANNER LOADER (TERISOLASI ANTI-BENTROK) === -->
   <script>
     (function () {
       // TEMPELKAN URL src="..." DARI TOMBOL COPY CODE MASING-MASING BANNER DI SINI:
       const ADSTERRA_INVOKE_URLS = {
-  banner300x250: 'https://www.highperformanceformat.com/https://bauval.org/22/47f9b2c57e08fb1b89f553c346feffb4/invoke.js', // Ganti ini
-  banner320x50:  'https://www.highperformanceformat.com/https://bauval.org/22/faea6ea225556c28691d2b956bf4ed9c/invoke.js',  // Ganti ini
-  banner728x90:  'https://www.highperformanceformat.com/https://bauval.org/22/205db90d9d654b6732c97db341a6416a/invoke.js'   // Ganti ini
-};
+        banner300x250: 'https://www.highperformanceformat.com/https://bauval.org/22/47f9b2c57e08fb1b89f553c346feffb4/invoke.js', // Ganti ini
+        banner320x50:  'https://www.highperformanceformat.com/https://bauval.org/22/faea6ea225556c28691d2b956bf4ed9c/invoke.js',  // Ganti ini
+        banner728x90:  'https://www.highperformanceformat.com/https://bauval.org/22/205db90d9d654b6732c97db341a6416a/invoke.js'   // Ganti ini
+      };
 
       function mountIsolatedBanner(containerId, key, width, height, invokeUrl) {
         const container = document.getElementById(containerId);
