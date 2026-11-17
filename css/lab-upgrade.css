@@ -229,3 +229,29 @@
   width: 100% !important;
   bottom: 0 !important;
 }
+
+/* === UI UNTUK DAFTAR SHORTCUT === */
+.f3d-shortcut-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 13px;
+  color: #cbd5e1;
+}
+.f3d-shortcut-row:last-child {
+  border-bottom: none;
+}
+.f3d-kbd {
+  display: inline-block;
+  padding: 4px 8px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.1);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  border-radius: 4px;
+  box-shadow: 0 2px 0 rgba(0, 229, 255, 0.2);
+}
