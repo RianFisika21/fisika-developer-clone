@@ -485,7 +485,8 @@
         '<button type="button" class="f3d-tb-btn" id="f3d-btn-shot" title="Simpan Gambar PNG (Pintasan: P)">📸 PNG</button>' +
         '<button type="button" class="f3d-tb-btn" id="f3d-btn-class" title="Perbesar Tampilan Ruang Kelas (Pintasan: L)">🎓 Mode Kelas</button>' +
         '<button type="button" class="f3d-tb-btn" id="f3d-btn-fs" title="Layar Penuh Simulasi (Pintasan: F)">🖥️ Fullscreen</button>' +
-        '<button type="button" class="f3d-tb-btn" id="f3d-btn-pdf" title="Buat Laporan Praktikum PDF">📄 Laporan PDF</button>';
+        '<button type="button" class="f3d-tb-btn" id="f3d-btn-pdf" title="Buat Laporan Praktikum PDF">📄 Laporan PDF</button>' +
+        '<button type="button" class="f3d-tb-btn" id="f3d-btn-shortcut" title="Daftar Pintasan Keyboard">⌨️ Hotkey</button>';
 
       if (wrapper && wrapper.parentNode) wrapper.parentNode.insertBefore(tb, wrapper);
       else mountEl.prepend(tb);
