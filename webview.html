@@ -1,0 +1,251 @@
+<!-- === KOMPONEN WEBVIEW FISIKA UNIVERSAL === -->
+<section class="fu-wv-wrapper" id="fuWebviewSection">
+  <!-- Toolbar Atas WebView -->
+  <div class="fu-wv-toolbar">
+    <div class="fu-wv-controls">
+      <span class="fu-wv-dot fu-wv-red"></span>
+      <span class="fu-wv-dot fu-wv-yellow"></span>
+      <span class="fu-wv-dot fu-wv-green"></span>
+      <button type="button" class="fu-wv-btn" id="fuWvReload" title="Muat Ulang">↻</button>
+    </div>
+
+    <!-- Tab Cepat (Ganti URL sesuai kebutuhan) -->
+    <div class="fu-wv-tabs" id="fuWvTabs">
+      <button type="button" class="fu-wv-tab active" data-url="https://rianfisika21.blogspot.com">Artikel Teori</button>
+      <button type="button" class="fu-wv-tab" data-url="https://phet.colorado.edu/sims/html/pendulum-lab/latest/pendulum-lab_in.html">Lab Referensi</button>
+    </div>
+
+    <!-- Input URL Manual & Tombol Aksi -->
+    <form class="fu-wv-url-form" id="fuWvForm">
+      <input type="text" id="fuWvUrlInput" class="fu-wv-input" value="https://rianfisika21.blogspot.com" placeholder="Masukkan URL https://..." aria-label="URL WebView" />
+      <button type="submit" class="fu-wv-btn fu-wv-go">Buka</button>
+    </form>
+
+    <div class="fu-wv-actions">
+      <button type="button" class="fu-wv-btn" id="fuWvFullscreen" title="Layar Penuh">⛶</button>
+      <a href="https://rianfisika21.blogspot.com" target="_blank" rel="noopener noreferrer" class="fu-wv-btn" id="fuWvExternal" title="Buka di Tab Baru">↗</a>
+    </div>
+  </div>
+
+  <!-- Area Layar WebView -->
+  <div class="fu-wv-viewport" id="fuWvViewport">
+    <div class="fu-wv-loader" id="fuWvLoader">
+      <div class="fu-wv-spinner"></div>
+      <span>Memuat halaman di WebView...</span>
+    </div>
+    <iframe
+      id="fuWvFrame"
+      src="https://rianfisika21.blogspot.com"
+      title="WebView Konten"
+      loading="lazy"
+      sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<style>
+  .fu-wv-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    margin: 24px auto;
+    background: #0b0f19;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  .fu-wv-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #111827;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .fu-wv-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .fu-wv-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .fu-wv-red { background: #ef4444; }
+  .fu-wv-yellow { background: #f59e0b; }
+  .fu-wv-green { background: #10b981; }
+  .fu-wv-tabs {
+    display: flex;
+    gap: 6px;
+  }
+  .fu-wv-tab {
+    background: rgba(255, 255, 255, 0.05);
+    color: #94a3b8;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .fu-wv-tab:hover,
+  .fu-wv-tab.active {
+    background: rgba(56, 189, 248, 0.18);
+    color: #38bdf8;
+    border-color: #38bdf8;
+  }
+  .fu-wv-url-form {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    gap: 6px;
+  }
+  .fu-wv-input {
+    flex: 1;
+    background: #060911;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #e2e8f0;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    outline: none;
+  }
+  .fu-wv-input:focus {
+    border-color: #38bdf8;
+  }
+  .fu-wv-btn {
+    background: #1e293b;
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .fu-wv-btn:hover {
+    background: #334155;
+    color: #38bdf8;
+  }
+  .fu-wv-go {
+    background: #0284c7;
+    border-color: #0284c7;
+    color: #fff;
+    font-weight: 600;
+  }
+  .fu-wv-go:hover {
+    background: #0369a1;
+    color: #fff;
+  }
+  .fu-wv-actions {
+    display: flex;
+    gap: 6px;
+  }
+  .fu-wv-viewport {
+    position: relative;
+    width: 100%;
+    height: 72vh;
+    min-height: 480px;
+    background: #060911;
+  }
+  .fu-wv-viewport iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+  .fu-wv-loader {
+    position: absolute;
+    inset: 0;
+    background: rgba(6, 9, 17, 0.88);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #94a3b8;
+    font-size: 13px;
+    z-index: 2;
+    transition: opacity 0.25s ease;
+  }
+  .fu-wv-loader.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .fu-wv-spinner {
+    width: 28px;
+    height: 28px;
+    border: 3px solid rgba(56, 189, 248, 0.2);
+    border-top-color: #38bdf8;
+    border-radius: 50%;
+    animation: fuWvSpin 0.8s linear infinite;
+  }
+  @keyframes fuWvSpin {
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<script>
+  (function () {
+    const frame = document.getElementById('fuWvFrame');
+    const input = document.getElementById('fuWvUrlInput');
+    const form = document.getElementById('fuWvForm');
+    const loader = document.getElementById('fuWvLoader');
+    const reloadBtn = document.getElementById('fuWvReload');
+    const fsBtn = document.getElementById('fuWvFullscreen');
+    const extBtn = document.getElementById('fuWvExternal');
+    const viewport = document.getElementById('fuWvViewport');
+    const tabs = document.querySelectorAll('.fu-wv-tab');
+
+    function loadWebView(rawUrl) {
+      let url = rawUrl.trim();
+      if (!url) return;
+      if (!/^https?:\/\//i.test(url) && !url.startsWith('./') && !url.startsWith('/')) {
+        url = 'https://' + url;
+      }
+      loader.classList.remove('hidden');
+      input.value = url;
+      extBtn.href = url;
+      frame.src = url;
+    }
+
+    frame.addEventListener('load', () => {
+      loader.classList.add('hidden');
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      tabs.forEach(t => t.classList.remove('active'));
+      loadWebView(input.value);
+    });
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        loadWebView(tab.dataset.url);
+      });
+    });
+
+    reloadBtn.addEventListener('click', () => {
+      loader.classList.remove('hidden');
+      frame.src = frame.src;
+    });
+
+    fsBtn.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        viewport.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen();
+      }
+    });
+  })();
+</script>

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /raw_modules/
+Disallow: /convert_modul.py
+
+Sitemap: https://rianfisika21.github.io/fisika-developer/sitemap.xml
