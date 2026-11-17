@@ -368,4 +368,30 @@ const FuWorkbench = (() => {
     initLabShortcuts,
     initCommandPalette
   };
+    /* === AKTIFKAN COMMAND PALETTE DI INDEX.HTML === */
+  document.addEventListener("DOMContentLoaded", function () {
+    // Hanya jalankan jika ada elemen command palette di halaman
+    if (!document.getElementById("fu-cmd-backdrop")) return;
+
+    // Tunggu F3D_MODULES siap
+    var tries = 0;
+    var waitInterval = setInterval(function () {
+      tries++;
+      if (window.F3D_MODULES && window.F3D_MODULES.length) {
+        clearInterval(waitInterval);
+        // Format ulang modul untuk command palette
+        var paletteModules = window.F3D_MODULES.map(function (m) {
+          var acad = (window.F3D_ACADEMIC && window.F3D_ACADEMIC[m.id]) || {};
+          return {
+            id: m.id,
+            title: m.title,
+            category: m.catLabel || m.cat,
+            formula: acad.eq ? acad.eq.replace(/\$\$/g, '').substring(0, 40) + '...' : ''
+          };
+        });
+        FuWorkbench.initCommandPalette(paletteModules);
+      }
+      if (tries > 20) clearInterval(waitInterval);
+    }, 200);
+  });
 })();
