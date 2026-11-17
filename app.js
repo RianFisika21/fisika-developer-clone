@@ -844,6 +844,9 @@
             if (pos === -1) bookmarks.push(id); else bookmarks.splice(pos, 1);
             localStorage.setItem("f3dBookmarks", JSON.stringify(bookmarks));
             drawCatalog();
+                  if (window.FisikaSEO && window.FisikaSEO.updateForCatalog) {
+        window.FisikaSEO.updateForCatalog(list.length);
+      }
           });
         });
 
@@ -913,16 +916,24 @@
       activeModObj = modObj;
 
       document.title = "Modul #" + padNum(modObj.id) + ": " + modObj.title + " — Fisika Developer";
+      if (window.FisikaSEO && window.FisikaSEO.updateForModule) {
+        window.FisikaSEO.updateForModule(modObj);
+      }
       var titleEl = document.getElementById("f3d-mod-title");
       var badgeEl = document.getElementById("f3d-mod-badge");
       if (titleEl) titleEl.textContent = "#" + padNum(modObj.id) + " — " + modObj.title;
       if (badgeEl) badgeEl.textContent = modObj.catLabel || modObj.cat;
 
       var scriptPath = "modules/modul-" + padNum(modObj.id) + ".js";
+      var pageLoading = document.getElementById('fd-page-loading');
+      if (pageLoading) pageLoading.style.display = 'flex';
+
       ensureThree().then(function() {
         var modScript = document.createElement("script");
         modScript.src = scriptPath + "?v=6";
-        modScript.onload = function() {
+        modScript.onload = function () {
+          if (pageLoading) pageLoading.style.display = 'none';
+          /* ... kode onload asli Anda tetap ... */
           setTimeout(function() {
             enhanceLoadedModule(modObj, mountEl);
             if (window.MathJax && window.MathJax.typesetPromise) {
@@ -931,6 +942,8 @@
           }, 80);
         };
         modScript.onerror = function() {
+           if (pageLoading) pageLoading.style.display = 'none';
+          /* ... kode onerror asli Anda tetap ... */
           mountEl.innerHTML =
             '<div style="padding:18px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:10px;">' +
               '<p style="margin:0 0 8px;color:#fbbf24;font-weight:600;">File skrip modul <code>' + scriptPath + '</code> tidak ditemukan.</p>' +
