@@ -507,14 +507,56 @@
         window.dispatchEvent(new Event("resize"));
       };
 
-      document.getElementById("f3d-btn-fs").onclick = function() {
-        var target = wrapper || visPanel || mountEl;
-        if (!document.fullscreenElement) {
-          if (target.requestFullscreen) target.requestFullscreen();
-        } else {
-          if (document.exitFullscreen) document.exitFullscreen();
+      // === FITUR BARU: MODAL DAFTAR HOTKEY & SHORTCUT TERSEMBUNYI ===
+      document.getElementById("f3d-btn-shortcut").onclick = function() {
+        if (!document.getElementById("f3d-hotkey-modal")) {
+          var hm = document.createElement("div");
+          hm.className = "f3d-modal-backdrop";
+          hm.id = "f3d-hotkey-modal";
+          hm.innerHTML =
+            '<div class="f3d-modal-card" style="max-width: 400px;">' +
+              '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">' +
+                '<span style="font-family:Orbitron,sans-serif;font-size:14px;color:#00e5ff;">⌨️ PINTASAN KEYBOARD</span>' +
+                '<button type="button" id="f3d-close-hotkey" style="background:none;border:none;color:#94a3b8;font-size:20px;cursor:pointer;">&times;</button>' +
+              '</div>' +
+              '<div class="f3d-shortcut-row"><span>Play / Pause Simulasi</span><kbd class="f3d-kbd">Space</kbd></div>' +
+              '<div class="f3d-shortcut-row"><span>Reset Simulasi ke Awal</span><kbd class="f3d-kbd">R</kbd></div>' +
+              '<div class="f3d-shortcut-row"><span>Slow-Mo (Gerak Lambat)</span><kbd class="f3d-kbd">S</kbd></div>' +
+              '<div class="f3d-shortcut-row"><span>Layar Penuh (Fullscreen)</span><kbd class="f3d-kbd">F</kbd></div>' +
+              '<div class="f3d-shortcut-row"><span>Screenshot (PNG)</span><kbd class="f3d-kbd">P</kbd></div>' +
+              '<div class="f3d-shortcut-row"><span>Mode Kelas (Presentasi)</span><kbd class="f3d-kbd">L</kbd></div>' +
+              '<div class="f3d-shortcut-row"><span>Modul Sebelumnya / Selanjutnya</span><span><kbd class="f3d-kbd">Alt</kbd> + <kbd class="f3d-kbd">←</kbd> / <kbd class="f3d-kbd">→</kbd></span></div>' +
+              '<div class="f3d-shortcut-row"><span>Pencarian Cepat Modul</span><span><kbd class="f3d-kbd">Ctrl</kbd> + <kbd class="f3d-kbd">K</kbd></span></div>' +
+            '</div>';
+          document.body.appendChild(hm);
+          document.getElementById("f3d-close-hotkey").onclick = function() { hm.classList.remove("is-open"); };
+          hm.addEventListener("click", function(e) { if (e.target === hm) hm.classList.remove("is-open"); });
         }
+        document.getElementById("f3d-hotkey-modal").classList.add("is-open");
       };
+
+      // AKTIFKAN SHORTCUT TERSEMBUNYI (Space, R, S)
+      if (window.FuWorkbench && window.FuWorkbench.initLabShortcuts) {
+        window.FuWorkbench.initLabShortcuts({
+          onTogglePlay: function() {
+            // Cari tombol play/pause di modul, jika tidak ada, kirim sinyal
+            var btn = document.querySelector('#btn-play, .btn-play, #btn-pause, .btn-pause, [data-action="play"]');
+            if (btn) { btn.click(); } else { window.dispatchEvent(new Event('f3d-toggle-play')); }
+          },
+          onReset: function() {
+            var btn = document.querySelector('#btn-reset, .btn-reset, [data-action="reset"]');
+            if (btn) { btn.click(); } else { window.dispatchEvent(new Event('f3d-reset')); }
+          },
+          onToggleFocus: function() {
+            var btn = document.getElementById('f3d-btn-fs');
+            if (btn) btn.click(); // F diarahkan ke Fullscreen
+          },
+          onToggleSlowMo: function() {
+            var btn = document.querySelector('#btn-slowmo, .btn-slowmo, [data-action="slowmo"]');
+            if (btn) { btn.click(); } else { window.dispatchEvent(new Event('f3d-slowmo')); }
+          }
+        });
+      }
 
       // === TAMBAHKAN BLOK INI TEPAT DI BAWAHNYA ===
       // Memaksa Three.js menghitung ulang ukuran kanvas saat masuk/keluar fullscreen
