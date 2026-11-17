@@ -140,4 +140,17 @@
     });
 
   } catch (err) { console.error('Module script error:', err); }
+
+  // Contoh di dalam modules/modul-XX.js
+window.addEventListener('f3d-toggle-play', function() {
+    isRunning = !isRunning; // Ubah status simulasi Anda
+});
+
+window.addEventListener('f3d-reset', function() {
+    // Kode untuk mereset posisi objek ke awal
+});
+
+window.addEventListener('f3d-slowmo', function() {
+    timeScale = (timeScale === 1) ? 0.5 : 1; // Ganti ke lambat atau normal
+});
 })();
