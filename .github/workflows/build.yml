@@ -1,0 +1,41 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install minifiers
+        run: npm install -g html-minifier-terser csso-cli terser
+
+      - name: Minify CSS
+        run: |
+          find . -name "*.css" -not -path "./.git/*" -not -path "./node_modules/*" | while read f; do
+            case "$f" in *.min.css) ;; *) csso "$f" --output "${f%.css}.min.css" ;; esac
+          done
+
+      - name: Minify JS
+        run: |
+          find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./modules/*" | while read f; do
+            case "$f" in *.min.js|sw.js) ;; *) terser "$f" --compress --mangle --output "${f%.js}.min.js" ;; esac
+          done
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./
+          publish_branch: gh-pages
+          exclude_assets: '.github,raw_modules,convert_modul.py,*.md'
