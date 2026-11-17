@@ -199,3 +199,33 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* === FIX UNTUK FULLSCREEN === */
+/* Memaksa container membentang penuh saat fullscreen */
+:fullscreen .visualization-panel,
+:fullscreen .physics-sim-wrapper,
+:fullscreen #f3d-module-mount {
+  width: 100vw !important;
+  height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background: #060911 !important;
+}
+
+/* Memaksa kanvas Three.js mengisi sisa ruang */
+:fullscreen canvas {
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100vh !important;
+  object-fit: contain;
+}
+
+/* Memastikan toolbar dan HUD tetap terlihat di atas kanvas */
+:fullscreen .f3d-canvas-toolbar,
+:fullscreen .fu-transport-sticky {
+  position: absolute !important;
+  z-index: 100 !important;
+  width: 100% !important;
+  bottom: 0 !important;
+}
