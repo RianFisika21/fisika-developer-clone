@@ -515,6 +515,14 @@
         }
       };
 
+      // === TAMBAHKAN BLOK INI TEPAT DI BAWAHNYA ===
+      // Memaksa Three.js menghitung ulang ukuran kanvas saat masuk/keluar fullscreen
+      document.addEventListener('fullscreenchange', function() {
+        setTimeout(function() {
+          window.dispatchEvent(new Event('resize'));
+        }, 150); // Jeda 150ms agar browser selesai merender transisi layar
+      });
+
       document.getElementById("f3d-btn-pdf").onclick = generateLabReportPDF;
     }
 
