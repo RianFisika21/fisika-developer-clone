@@ -1,48 +1,27 @@
-var CACHE_NAME = "fisika-3d-v1";
-var CORE_ASSETS = [
-  "./",
-  "./index.html",
-  "./modul.html",
-  "./style.css",
-  "./app.js",
-  "./addons.js"
-];
+const CACHE_NAME = 'fisika-dev-v1';
+const PRECACHE = ['/', '/index.html', '/style.css', '/manifest.json'];
 
-self.addEventListener("install", function(e) {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(function(cache) {
-      return cache.addAll(CORE_ASSETS);
-    })
-  );
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(PRECACHE)));
   self.skipWaiting();
 });
 
-self.addEventListener("fetch", function(e) {
-  if (e.request.method !== "GET") return;
-  var url = e.request.url;
-
-  // Pustaka CDN (Three.js, Chart.js, Font): Cache-First agar cepat & offline-ready
-  if (url.indexOf("cdnjs.cloudflare.com") !== -1 || url.indexOf("cdn.jsdelivr.net") !== -1) {
-    e.respondWith(
-      caches.match(e.request).then(function(cached) {
-        return cached || fetch(e.request).then(function(res) {
-          var copy = res.clone();
-          caches.open(CACHE_NAME).then(function(c) { c.put(e.request, copy); });
-          return res;
-        });
-      })
-    );
-    return;
-  }
-
-  // File lokal GitHub Pages: Network-First dengan fallback Cache saat offline
+self.addEventListener('fetch', e => {
+  if (e.request.method !== 'GET') return;
   e.respondWith(
-    fetch(e.request).then(function(res) {
-      var copy = res.clone();
-      caches.open(CACHE_NAME).then(function(c) { c.put(e.request, copy); });
-      return res;
-    }).catch(function() {
-      return caches.match(e.request);
+    caches.match(e.request).then(cached => {
+      // Stale-while-revalidate untuk aset statis
+      const fetched = fetch(e.request).then(res => {
+        if (res.ok) caches.open(CACHE_NAME).then(c => c.put(e.request, res.clone()));
+        return res;
+      }).catch(() => cached);
+      return cached || fetched;
     })
   );
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(caches.keys().then(keys =>
+    Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
+  ));
 });
