@@ -1,6 +1,9 @@
 (function() {
   "use strict";
 
+  if (window.__F3D_APP_LOADED__) return;
+  window.__F3D_APP_LOADED__ = true;
+
   /* 0. PATCH GLOBAL WEBGL BUFFER (AGAR SCREENSHOT & LAPORAN PDF SELALU JERNIH) */
   (function() {
     if (typeof HTMLCanvasElement !== "undefined") {
@@ -14,7 +17,7 @@
     }
   })();
 
-  /* 1. KAMUS TUNGGAL 37 MODUL AKTUAL (GITHUB PAGES EDITION) */
+  /* 1. KAMUS UTAMA MODUL (1-37; MODUL 38-47 DITAMBAHKAN OLEH modules-pack-4.js) */
   window.F3D_MODULES = [
     { id: 1,  slug: "mekanika-benda-langit-01", cat: "Astro",     catLabel: "Astro & Medan",       title: "Mekanika Benda Langit (Simulasi Orbit N-Body & Hukum Kepler)", desc: "Dinamika gravitasi N-body, lintasan elips Hukum Kepler, dan kekekalan momentum sudut orbit planet.", url: "modul.html?id=1" },
     { id: 2,  slug: "bragg-peak-02",            cat: "Radiasi",   catLabel: "Radiasi & Medis",     title: "Jejak Peta Panas Deposisi Energi (Bragg Peak)",               desc: "Visualisasi volumetrik kurva Bragg Peak dan distribusi dosis serap berkas ion/proton.", url: "modul.html?id=2" },
@@ -55,7 +58,7 @@
     { id: 37, slug: "metropolis-ising-37",      cat: "Komputasi", catLabel: "Fisika Statistik",    title: "Model Ising Feromagnetik 3D & Transisi Fase Curie",           desc: "Simulasi Monte Carlo Metropolis kisi spin dipol 3D melintasi suhu kritis Curie Tc ≈ 4.51.", url: "modul.html?id=37" }
   ];
 
-  /* 2. KAMUS KONFIGURASI TELEMETRI CSV & DEEP-LINK (ID 1 - 37) */
+  /* 2. KAMUS KONFIGURASI TELEMETRI CSV & DEEP-LINK */
   window.FISIKA3D_CONFIGS = {
     1:  { moduleSlug: "mekanika-benda-langit-01", paramMap: { mass: "mass-slider", radius: "radius-slider", vel: "vel-slider", ecc: "ecc-slider" }, csvHeaders: ["Waktu_s", "Massa_M", "Radius_Gm", "Kecepatan_kms", "Periode_Hari"] },
     2:  { moduleSlug: "bragg-peak-02",            paramMap: { energy: "energy-slider", ion: "ion-select", depth: "depth-slider" }, csvHeaders: ["Waktu_s", "Kedalaman_cm", "Dosis_Relatif_pct", "LET_keV_um", "Posisi_Bragg_cm"] },
@@ -96,7 +99,7 @@
     37: { moduleSlug: "metropolis-ising-37",      paramMap: { temp: "temp-slider", field: "field-slider" }, csvHeaders: ["Waktu_s", "Suhu_T", "Medan_h", "Magnetisasi_M", "Fase_Magnetik"] }
   };
 
-  /* 2B. KAMUS AKADEMIK & LKM (PERSAMAAN LATEX + PROSEDUR UNTUK 37 MODUL) */
+  /* 2B. KAMUS AKADEMIK & LKM (PERSAMAAN LATEX + PROSEDUR) */
   window.F3D_ACADEMIC = {
     1:  { eq: "$$v = \\sqrt{\\frac{GM}{r}}, \\qquad T = 2\\pi\\sqrt{\\frac{r^3}{GM}}$$", note: "Kecepatan orbit sirkular berbanding terbalik dengan akar radius orbit, sementara kuadrat periode revolusi sebanding dengan pangkat tiga jarak rata-rata (Hukum III Kepler)." },
     2:  { eq: "$$-\\frac{dE}{dx} \\propto \\frac{z^2}{v^2} \\left[\\ln\\left(\\frac{2m_e v^2}{I}\\right) - \\beta^2\\right]$$", note: "Persamaan Bethe–Bloch menunjukkan bahwa laju kehilangan energi partikel bermuatan melonjak tajam tepat sebelum berhenti (puncak Bragg), menjadi dasar terapi proton presisi tinggi." },
@@ -408,7 +411,7 @@
   function enhanceLoadedModule(modObj, mountEl) {
     var wrapper = mountEl.querySelector(".physics-sim-wrapper");
     var visPanel = mountEl.querySelector(".visualization-panel") || wrapper;
-    var ctrlPanel = mountEl.querySelector(".control-panel");
+    var ctrlPanel = mountEl.querySelector(".control-panel") || document.querySelector("#f3d-sidebar-controls .control-panel");
     var cfg = window.FISIKA3D_CONFIGS[modObj.id] || { moduleSlug: modObj.slug, paramMap: {}, csvHeaders: ["Waktu_s", "Nilai"] };
     var acad = window.F3D_ACADEMIC[modObj.id] || { eq: "$$\\mathcal{H}\\psi = E\\psi$$", note: "Eksplorasi variasi parameter pada panel kontrol untuk mengamati respon fisis sistem secara real-time." };
 
@@ -507,7 +510,6 @@
         window.dispatchEvent(new Event("resize"));
       };
 
-      // === FITUR BARU: MODAL DAFTAR HOTKEY & SHORTCUT TERSEMBUNYI ===
       document.getElementById("f3d-btn-shortcut").onclick = function() {
         if (!document.getElementById("f3d-hotkey-modal")) {
           var hm = document.createElement("div");
@@ -535,11 +537,9 @@
         document.getElementById("f3d-hotkey-modal").classList.add("is-open");
       };
 
-      // AKTIFKAN SHORTCUT TERSEMBUNYI (Space, R, S)
       if (window.FuWorkbench && window.FuWorkbench.initLabShortcuts) {
         window.FuWorkbench.initLabShortcuts({
           onTogglePlay: function() {
-            // Cari tombol play/pause di modul, jika tidak ada, kirim sinyal
             var btn = document.querySelector('#btn-play, .btn-play, #btn-pause, .btn-pause, [data-action="play"]');
             if (btn) { btn.click(); } else { window.dispatchEvent(new Event('f3d-toggle-play')); }
           },
@@ -549,7 +549,7 @@
           },
           onToggleFocus: function() {
             var btn = document.getElementById('f3d-btn-fs');
-            if (btn) btn.click(); // F diarahkan ke Fullscreen
+            if (btn) btn.click();
           },
           onToggleSlowMo: function() {
             var btn = document.querySelector('#btn-slowmo, .btn-slowmo, [data-action="slowmo"]');
@@ -558,12 +558,10 @@
         });
       }
 
-      // === TAMBAHKAN BLOK INI TEPAT DI BAWAHNYA ===
-      // Memaksa Three.js menghitung ulang ukuran kanvas saat masuk/keluar fullscreen
       document.addEventListener('fullscreenchange', function() {
         setTimeout(function() {
           window.dispatchEvent(new Event('resize'));
-        }, 150); // Jeda 150ms agar browser selesai merender transisi layar
+        }, 150);
       });
 
       document.getElementById("f3d-btn-pdf").onclick = generateLabReportPDF;
@@ -768,16 +766,28 @@
   document.addEventListener("DOMContentLoaded", function() {
     injectEnhancementStyles();
     var list = window.F3D_MODULES;
+    var totalMods = list.length;
     var params = new URLSearchParams(window.location.search);
 
     if (params.get("embed") === "1") {
       document.body.classList.add("f3d-embed-mode");
     }
 
-    // Perbarui label jumlah modul statis 27 -> 37 di halaman jika masih tertulis 27
-    document.querySelectorAll("a, span, div, h1, h2, p").forEach(function(el) {
-      if (el.children.length === 0 && el.textContent.indexOf("37 Modul") !== -1) {
-        el.textContent = el.textContent.replace(/27 Modul/g, "37 Modul");
+    // Sinkronkan label jumlah modul di seluruh elemen statis menjadi jumlah aktual (47)
+    document.querySelectorAll("a, span, div, h1, h2, p, button").forEach(function(el) {
+      if (el.children.length === 0) {
+        if (el.textContent.indexOf("37 Modul") !== -1) {
+          el.textContent = el.textContent.replace(/37 Modul/g, totalMods + " Modul");
+        }
+        if (el.textContent.indexOf("27 Modul") !== -1) {
+          el.textContent = el.textContent.replace(/27 Modul/g, totalMods + " Modul");
+        }
+        if (el.textContent.indexOf("37 MODUL") !== -1) {
+          el.textContent = el.textContent.replace(/37 MODUL/g, totalMods + " MODUL");
+        }
+        if (el.textContent === "Semua (37)") {
+          el.textContent = "Semua (" + totalMods + ")";
+        }
       }
     });
 
@@ -805,13 +815,13 @@
 
     var notice = document.getElementById("system-announcement");
     var btnCloseNotice = document.getElementById("btn-close-announcement");
-    if (notice && localStorage.getItem("fdNoticeDismissed") !== "v37-gh") {
+    if (notice && localStorage.getItem("fdNoticeDismissed") !== "v47-gh") {
       notice.style.display = "block";
     }
     if (btnCloseNotice) {
       btnCloseNotice.addEventListener("click", function() {
         notice.style.display = "none";
-        localStorage.setItem("fdNoticeDismissed", "v37-gh");
+        localStorage.setItem("fdNoticeDismissed", "v47-gh");
       });
     }
 
@@ -895,9 +905,9 @@
             if (pos === -1) bookmarks.push(id); else bookmarks.splice(pos, 1);
             localStorage.setItem("f3dBookmarks", JSON.stringify(bookmarks));
             drawCatalog();
-                  if (window.FisikaSEO && window.FisikaSEO.updateForCatalog) {
-        window.FisikaSEO.updateForCatalog(list.length);
-      }
+            if (window.FisikaSEO && window.FisikaSEO.updateForCatalog) {
+              window.FisikaSEO.updateForCatalog(list.length);
+            }
           });
         });
 
@@ -933,7 +943,7 @@
 
     var featBox = document.getElementById("f3d-featured-container");
     if (featBox) {
-      var featIds = [18, 20, 22, 28, 30, 34, 37];
+      var featIds = [18, 20, 22, 30, 34, 37, 38, 42, 47];
       featBox.innerHTML = featIds.map(function(id) {
         var m = list.find(function(x) { return x.id === id; });
         if (!m) return "";
@@ -975,16 +985,28 @@
       if (titleEl) titleEl.textContent = "#" + padNum(modObj.id) + " — " + modObj.title;
       if (badgeEl) badgeEl.textContent = modObj.catLabel || modObj.cat;
 
-      var scriptPath = "modules/modul-" + padNum(modObj.id) + ".js";
       var pageLoading = document.getElementById('fd-page-loading');
       if (pageLoading) pageLoading.style.display = 'flex';
 
       ensureThree().then(function() {
+        // Modul #38 - #47 dirender langsung oleh modules-pack-4.js tanpa file terpisah
+        if (modObj.id >= 38) {
+          if (pageLoading) pageLoading.style.display = 'none';
+          setTimeout(function() {
+            enhanceLoadedModule(modObj, mountEl);
+            if (window.MathJax && window.MathJax.typesetPromise) {
+              window.MathJax.typesetPromise([mountEl]).catch(function() {});
+            }
+          }, 150);
+          return;
+        }
+
+        // Modul #01 - #37 dimuat dari folder modules/modul-XX.js
+        var scriptPath = "modules/modul-" + padNum(modObj.id) + ".js";
         var modScript = document.createElement("script");
         modScript.src = scriptPath + "?v=6";
         modScript.onload = function () {
           if (pageLoading) pageLoading.style.display = 'none';
-          /* ... kode onload asli Anda tetap ... */
           setTimeout(function() {
             enhanceLoadedModule(modObj, mountEl);
             if (window.MathJax && window.MathJax.typesetPromise) {
@@ -993,8 +1015,7 @@
           }, 80);
         };
         modScript.onerror = function() {
-           if (pageLoading) pageLoading.style.display = 'none';
-          /* ... kode onerror asli Anda tetap ... */
+          if (pageLoading) pageLoading.style.display = 'none';
           mountEl.innerHTML =
             '<div style="padding:18px;background:var(--bg-elevated);border:1px solid var(--border-subtle);border-radius:10px;">' +
               '<p style="margin:0 0 8px;color:#fbbf24;font-weight:600;">File skrip modul <code>' + scriptPath + '</code> tidak ditemukan.</p>' +
@@ -1014,7 +1035,7 @@
             '<span class="f3d-nav-title">' + prev.title + '</span>' +
             '<span class="f3d-nav-cat">' + (prev.catLabel || prev.cat) + '</span>' +
           '</a>' +
-          '<a class="f3d-nav-hub" href="index.html">KATALOG<br/>37 MODUL</a>' +
+          '<a class="f3d-nav-hub" href="index.html">KATALOG<br/>' + totalMods + ' MODUL</a>' +
           '<a class="f3d-nav-card f3d-nav-next" href="' + next.url + '">' +
             '<span class="f3d-nav-dir">MODUL #' + padNum(next.id) + ' &#8594;</span>' +
             '<span class="f3d-nav-title">' + next.title + '</span>' +
