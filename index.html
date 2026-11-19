@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
-  <link rel="stylesheet" href="lab-upgrade.css"/>
+    <link rel="stylesheet" href="lab-upgrade.css"/>
   <script src="js/seo.js" defer></script>
   <script src="js/a11y.js" defer></script>
   <script>
@@ -26,19 +26,19 @@
       } catch (e) {}
     })();
   </script>
-  <script type="application/ld+json">
+    <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "EducationalApplication",
     "name": "Fisika Developer",
-    "description": "Laboratorium virtual fisika 3D interaktif dengan 47 modul simulasi komputasional.",
+    "description": "Laboratorium virtual fisika 3D interaktif dengan 37 modul simulasi komputasional.",
     "url": "https://rianfisika21.github.io/fisika-developer/",
     "applicationCategory": "EducationalApplication",
     "operatingSystem": "Web Browser",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "IDR" },
     "inLanguage": "id",
     "isAccessibleForFree": true,
-    "author": { "@type": "Person", "name": "Shabri Ali Anshary" }
+    "author": { "@type": "Person", "name": "Rian" }
   }
   </script>
 </head>
@@ -54,7 +54,7 @@
       </div>
 
       <div class="header-actions">
-        <a class="header-nav-link active" href="index.html">Katalog 47 Modul</a>
+        <a class="header-nav-link active" href="index.html">Katalog 37 Modul</a>
         <a class="header-nav-link" href="mailto:ian479872@gmail.com?subject=%5BBUG%20REPORT%5D%20Fisika%20Developer" title="Laporkan Kendala Simulasi">Lapor Bug</a>
         <div class="accent-pill" title="Ubah Warna Aksen">
           <input id="theme-color-picker" type="color" value="#00e5ff"/>
@@ -67,24 +67,24 @@
 
   <div class="notice-bar" id="system-announcement" style="display:none;">
     <div class="notice-inner">
-      <span id="announcement-content"><strong>Info Lab:</strong> Seluruh 47 modul simulasi fisika komputasi 3D kini aktif di GitHub Pages. Gunakan tombol <em>Lapor Bug</em> jika menemukan kendala numerik.</span>
+      <span id="announcement-content"><strong>Info Lab:</strong> Seluruh 37 modul simulasi fisika komputasi 3D kini aktif di GitHub Pages. Gunakan tombol <em>Lapor Bug</em> jika menemukan kendala numerik.</span>
       <button class="notice-close" id="btn-close-announcement" title="Tutup" type="button">&#215;</button>
     </div>
   </div>
 
   <div class="page-shell">
-    <main class="main-column" id="main-content">
+    <main class="main-column">
       <section class="card-box" id="f3d-catalog-app">
         <div class="catalog-header">
           <div>
-            <h2 class="catalog-title">LABORATORIUM VIRTUAL 3D (47 MODUL)</h2>
+            <h2 class="catalog-title">LABORATORIUM VIRTUAL 3D (37 MODUL)</h2>
             <span style="font-size:13px;color:var(--text-secondary);">Pilih bidang fisika atau ketik kata kunci untuk membuka simulasi interaktif.</span>
           </div>
           <input class="catalog-search" id="f3d-search" placeholder="Cari modul (Kepler, Lorentz, Cherenkov, PINNs)..." type="text"/>
         </div>
 
         <div class="filter-pills" id="f3d-filters">
-          <button class="filter-pill is-active" data-cat="ALL" type="button">Semua (47)</button>
+          <button class="filter-pill is-active" data-cat="ALL" type="button">Semua (37)</button>
           <button class="filter-pill" data-cat="Radiasi" type="button">Radiasi, Nuklir &amp; Medis</button>
           <button class="filter-pill" data-cat="Plasma" type="button">Plasma, Fluida &amp; Termal</button>
           <button class="filter-pill" data-cat="Kuantum" type="button">Kuantum &amp; Zat Padat</button>
@@ -94,13 +94,15 @@
 
         <div class="module-grid" id="f3d-grid"></div>
       </section>
+      <main id="main-content">
+  <!-- konten Anda -->
     </main>
 
     <aside class="sidebar-column">
       <div class="card-box">
         <h3 class="card-heading">
           <span>Eksplorasi 3D</span>
-          <span style="font-size:10px;color:var(--mint);">47 MODUL</span>
+          <span style="font-size:10px;color:var(--mint);">37 MODUL</span>
         </h3>
         <button class="btn-random-sim" id="f3d-btn-random" type="button">🎲 BUKA SIMULASI 3D ACAK</button>
         <div class="random-status" id="f3d-rand-msg">Lompat acak lintas topik fisika</div>
@@ -112,7 +114,7 @@
       <div class="card-box">
         <h3 class="card-heading"><span>Kategori Materi</span></h3>
         <ul class="cat-nav">
-          <li><a href="index.html"><span>Semua Simulasi 3D</span><span>47</span></a></li>
+          <li><a href="index.html"><span>Semua Simulasi 3D</span><span>27</span></a></li>
           <li><a href="index.html?cat=Radiasi"><span>Radiasi, Nuklir &amp; Medis</span><span>&#8594;</span></a></li>
           <li><a href="index.html?cat=Plasma"><span>Plasma, Fluida &amp; Termal</span><span>&#8594;</span></a></li>
           <li><a href="index.html?cat=Kuantum"><span>Kuantum &amp; Zat Padat</span><span>&#8594;</span></a></li>
@@ -140,117 +142,117 @@
     <strong>FISIKA DEVELOPER</strong> &#8212; Portal Simulasi Fisika Komputasi 3D &#8226; <a href="index.html">Beranda</a> &#8226; <a href="https://github.com/EjenAli1/fisika-developer" target="_blank" rel="noopener">GitHub Repo</a> &#8226; <a href="mailto:ian479872@gmail.com?subject=%5BBUG%20REPORT%5D">Lapor Bug</a>
   </footer>
 
-  <!-- === WIDGET STATISTIK PENGUNJUNG (RATA TENGAH) === -->
-  <div class="fu-vc-bar" id="fuVisitorWidget" aria-label="Statistik Pengunjung">
-    <div class="fu-vc-item">
-      <span class="fu-vc-pulse"></span>
-      <span class="fu-vc-label">Status:</span>
-      <span class="fu-vc-val fu-vc-online">Online</span>
-    </div>
-    <span class="fu-vc-sep">|</span>
-    <div class="fu-vc-item">
-      <span class="fu-vc-label">Hari Ini:</span>
-      <strong class="fu-vc-val" id="fuVcToday">...</strong>
-    </div>
-    <span class="fu-vc-sep">|</span>
-    <div class="fu-vc-item">
-      <span class="fu-vc-label">Total Kunjungan:</span>
-      <strong class="fu-vc-val" id="fuVcTotal">...</strong>
-    </div>
+  <script src="app.js?v=5"></script>
+  <script src="addons.js?v=5"></script>
+  <div class="fu-cmd-backdrop" id="fu-cmd-backdrop">
   </div>
+</div>
+  <!-- === WIDGET STATISTIK PENGUNJUNG (RATA TENGAH) === -->
+<div class="fu-vc-bar" id="fuVisitorWidget" aria-label="Statistik Pengunjung">
+  <div class="fu-vc-item">
+    <span class="fu-vc-pulse"></span>
+    <span class="fu-vc-label">Status:</span>
+    <span class="fu-vc-val fu-vc-online">Online</span>
+  </div>
+  <span class="fu-vc-sep">|</span>
+  <div class="fu-vc-item">
+    <span class="fu-vc-label">Hari Ini:</span>
+    <strong class="fu-vc-val" id="fuVcToday">...</strong>
+  </div>
+  <span class="fu-vc-sep">|</span>
+  <div class="fu-vc-item">
+    <span class="fu-vc-label">Total Kunjungan:</span>
+    <strong class="fu-vc-val" id="fuVcTotal">...</strong>
+  </div>
+</div>
 
-  <style>
-    .fu-vc-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: center;
-      width: fit-content;
-      max-width: calc(100% - 32px);
-      gap: 10px;
-      padding: 8px 18px;
-      margin: 20px auto;
-      background: #0b0f19;
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 999px;
-      font-family: system-ui, -apple-system, sans-serif;
-      font-size: 12px;
-      color: #94a3b8;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-    }
-    .fu-vc-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-    .fu-vc-val {
-      color: #38bdf8;
-      font-weight: 600;
-      font-variant-numeric: tabular-nums;
-    }
-    .fu-vc-online {
-      color: #10b981;
-    }
-    .fu-vc-sep {
-      color: rgba(255, 255, 255, 0.15);
-    }
-    .fu-vc-pulse {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #10b981;
-      box-shadow: 0 0 0 rgba(16, 185, 129, 0.6);
-      animation: fuVcPulse 2s infinite;
-    }
-    @keyframes fuVcPulse {
-      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
-      70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-    }
-    @keyframes fd-spin {
-      to { transform: rotate(360deg); }
-    }
-  </style>
+<style>
+  .fu-vc-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    max-width: calc(100% - 32px);
+    gap: 10px;
+    padding: 8px 18px;
+    margin: 20px auto;
+    background: #0b0f19;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 999px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 12px;
+    color: #94a3b8;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+  .fu-vc-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .fu-vc-val {
+    color: #38bdf8;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .fu-vc-online {
+    color: #10b981;
+  }
+  .fu-vc-sep {
+    color: rgba(255, 255, 255, 0.15);
+  }
+  .fu-vc-pulse {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0.6);
+    animation: fuVcPulse 2s infinite;
+  }
+  @keyframes fuVcPulse {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6); }
+    70% { box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+</style>
 
-  <script>
-    (function () {
-      const NAMESPACE = 'fisika-universal-github';
-      const todayStr = new Date().toISOString().slice(0, 10);
-      const totalKey = 'total-visits';
-      const dailyKey = 'daily-' + todayStr;
+<script>
+  (function () {
+    const NAMESPACE = 'fisika-universal-github';
+    const todayStr = new Date().toISOString().slice(0, 10);
+    const totalKey = 'total-visits';
+    const dailyKey = 'daily-' + todayStr;
 
-      const elTotal = document.getElementById('fuVcTotal');
-      const elToday = document.getElementById('fuVcToday');
+    const elTotal = document.getElementById('fuVcTotal');
+    const elToday = document.getElementById('fuVcToday');
 
-      const isNewSession = !sessionStorage.getItem('fu_vc_counted_' + todayStr);
-      const action = isNewSession ? '/up' : '/';
+    const isNewSession = !sessionStorage.getItem('fu_vc_counted_' + todayStr);
+    const action = isNewSession ? '/up' : '/';
 
-      async function fetchCount(key, targetEl) {
-        try {
-          const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${key}${action}`);
-          if (!res.ok) throw new Error('Network error');
-          const data = await res.json();
-          targetEl.textContent = Number(data.count || 0).toLocaleString('id-ID');
-        } catch (err) {
-          targetEl.textContent = '1';
-        }
+    async function fetchCount(key, targetEl) {
+      try {
+        const res = await fetch(`https://api.counterapi.dev/v1/${NAMESPACE}/${key}${action}`);
+        if (!res.ok) throw new Error('Network error');
+        const data = await res.json();
+        targetEl.textContent = Number(data.count || 0).toLocaleString('id-ID');
+      } catch (err) {
+        targetEl.textContent = '1';
       }
+    }
 
-      Promise.all([
-        fetchCount(totalKey, elTotal),
-        fetchCount(dailyKey, elToday)
-      ]).then(() => {
-        if (isNewSession) {
-          sessionStorage.setItem('fu_vc_counted_' + todayStr, '1');
-        }
-      });
-    })();
-  </script>
-
+    Promise.all([
+      fetchCount(totalKey, elTotal),
+      fetchCount(dailyKey, elToday)
+    ]).then(() => {
+      if (isNewSession) {
+        sessionStorage.setItem('fu_vc_counted_' + todayStr, '1');
+      }
+    });
+  })();
+</script>
   <script async="async" data-cfasync="false" src="https://bauval.org/21/3f4fc23d3f218cac491c4b5a6fe559f6"></script>
-  <div id="container-3f4fc23d3f218cac491c4b5a6fe559f6"></div>
-
-  <!-- Command Palette -->
+<div id="container-3f4fc23d3f218cac491c4b5a6fe559f6"></div>
+    <!-- Command Palette -->
   <div class="fu-cmd-backdrop" id="fu-cmd-backdrop" role="dialog" aria-modal="true" aria-label="Pencarian modul">
     <div class="fu-cmd-box">
       <input type="text" class="fu-cmd-input" id="fu-cmd-input"
@@ -267,10 +269,18 @@
       <div style="font-size:12px;letter-spacing:1px;">MEMUAT SIMULASI...</div>
     </div>
   </div>
-
-  <!-- SKRIP INTI TUNGGAL & TERURUT (47 MODUL) -->
+  <style>@keyframes fd-spin{to{transform:rotate(360deg);}}</style>
+    <script src="app.js" defer></script>
+  <script src="addons.js" defer></script>
+  <div id="fd-page-loading" style="position:fixed;inset:0;background:rgba(6,9,17,0.92);display:none;align-items:center;justify-content:center;z-index:9998;backdrop-filter:blur(6px);">
+  <div style="text-align:center;color:#00e5ff;font-family:Orbitron,sans-serif;">
+    <div style="width:48px;height:48px;margin:0 auto 12px;border:4px solid rgba(0,229,255,0.15);border-top-color:#00e5ff;border-radius:50%;animation:fd-spin 0.8s linear infinite;"></div>
+    <div style="font-size:12px;letter-spacing:1px;">MEMUAT SIMULASI...</div>
+  </div>
+</div>
+<style>@keyframes fd-spin{to{transform:rotate(360deg);}}</style>
   <script src="app.js?v=2026.11"></script>
-  <script src="modules-pack-4.js?v=2026.11"></script>
-  <script src="addons.js?v=2026.11"></script>
+<script src="modules-pack-4.js?v=2026.11"></script>
+<script src="addons.js?v=2026.11"></script>
 </body>
 </html>
