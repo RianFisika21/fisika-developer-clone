@@ -53,7 +53,7 @@
       </div>
 
       <div class="header-actions">
-        <a class="header-nav-link" href="index.html">Katalog 37 Modul</a>
+        <a class="header-nav-link" href="index.html">Katalog 47 Modul</a>
         <a class="header-nav-link" href="mailto:ian479872@gmail.com?subject=%5BBUG%20REPORT%5D%20Fisika%20Developer" title="Laporkan Kendala Simulasi">Lapor Bug</a>
         <div class="accent-pill" title="Ubah Warna Aksen">
           <input id="theme-color-picker" type="color" value="#00e5ff"/>
@@ -68,7 +68,7 @@
     <main class="main-column">
       <article class="post-article-card">
         <div class="module-breadcrumb">
-          <a href="index.html">&#8592; Kembali ke Katalog 37 Modul</a>
+          <a href="index.html">&#8592; Kembali ke Katalog 47 Modul</a>
           <span class="module-tag" id="f3d-mod-badge">MODUL 3D</span>
         </div>
         <h1 class="post-title" id="f3d-mod-title">Memuat Modul Simulasi 3D...</h1>
@@ -98,7 +98,7 @@
       <div class="card-box">
         <h3 class="card-heading">
           <span>Eksplorasi 3D</span>
-          <span style="font-size:10px;color:var(--mint);">37 MODUL</span>
+          <span style="font-size:10px;color:var(--mint);">47 MODUL</span>
         </h3>
         <button class="btn-random-sim" id="f3d-btn-random" type="button">🎲 BUKA SIMULASI 3D ACAK</button>
         <div class="random-status" id="f3d-rand-msg">Lompat acak lintas topik fisika</div>
@@ -110,7 +110,7 @@
       <div class="card-box">
         <h3 class="card-heading"><span>Kategori Materi</span></h3>
         <ul class="cat-nav">
-          <li><a href="index.html"><span>Semua Simulasi 3D</span><span>27</span></a></li>
+          <li><a href="index.html"><span>Semua Simulasi 3D</span><span>47</span></a></li>
           <li><a href="index.html?cat=Radiasi"><span>Radiasi, Nuklir &amp; Medis</span><span>&#8594;</span></a></li>
           <li><a href="index.html?cat=Plasma"><span>Plasma, Fluida &amp; Termal</span><span>&#8594;</span></a></li>
           <li><a href="index.html?cat=Kuantum"><span>Kuantum &amp; Zat Padat</span><span>&#8594;</span></a></li>
@@ -147,14 +147,21 @@
     <strong>FISIKA DEVELOPER</strong> &#8212; Portal Simulasi Fisika Komputasi 3D &#8226; <a href="index.html">Beranda</a> &#8226; <a href="https://github.com/EjenAli1/fisika-developer-clone" target="_blank" rel="noopener">GitHub Repo</a> &#8226; <a href="mailto:ian479872@gmail.com?subject=%5BBUG%20REPORT%5D">Lapor Bug</a>
   </footer>
 
-  <script src="app.js?v=5"></script>
-  <script src="addons.js?v=5"></script>
   <div class="fu-cmd-backdrop" id="fu-cmd-backdrop">
     <div class="fu-cmd-box">
       <input type="search" class="fu-cmd-input" id="fu-cmd-input" placeholder="Ketik nama simulasi, kategori, atau rumus (Esc untuk tutup)..." />
       <div class="fu-cmd-list" id="fu-cmd-list"></div>
     </div>
   </div>
+
+  <!-- Loading Overlay Global -->
+  <div id="fd-page-loading" style="position:fixed;inset:0;background:rgba(6,9,17,0.92);display:none;align-items:center;justify-content:center;z-index:9998;backdrop-filter:blur(6px);">
+    <div style="text-align:center;color:#00e5ff;font-family:Orbitron,sans-serif;">
+      <div style="width:48px;height:48px;margin:0 auto 12px;border:4px solid rgba(0,229,255,0.15);border-top-color:#00e5ff;border-radius:50%;animation:fd-spin 0.8s linear infinite;"></div>
+      <div style="font-size:12px;letter-spacing:1px;">MEMUAT SIMULASI...</div>
+    </div>
+  </div>
+  <style>@keyframes fd-spin{to{transform:rotate(360deg);}}</style>
 
   <!-- SINKRONISASI OTOMATIS .control-panel KE .fu-sidebar-controls -->
   <script>
@@ -180,11 +187,10 @@
   <!-- === ADSTERRA BANNER LOADER (TERISOLASI ANTI-BENTROK) === -->
   <script>
     (function () {
-      // TEMPELKAN URL src="..." DARI TOMBOL COPY CODE MASING-MASING BANNER DI SINI:
       const ADSTERRA_INVOKE_URLS = {
-        banner300x250: 'https://www.highperformanceformat.com/https://bauval.org/22/47f9b2c57e08fb1b89f553c346feffb4/invoke.js', // Ganti ini
-        banner320x50:  'https://www.highperformanceformat.com/https://bauval.org/22/faea6ea225556c28691d2b956bf4ed9c/invoke.js',  // Ganti ini
-        banner728x90:  'https://www.highperformanceformat.com/https://bauval.org/22/205db90d9d654b6732c97db341a6416a/invoke.js'   // Ganti ini
+        banner300x250: 'https://www.highperformanceformat.com/https://bauval.org/22/47f9b2c57e08fb1b89f553c346feffb4/invoke.js',
+        banner320x50:  'https://www.highperformanceformat.com/https://bauval.org/22/faea6ea225556c28691d2b956bf4ed9c/invoke.js',
+        banner728x90:  'https://www.highperformanceformat.com/https://bauval.org/22/205db90d9d654b6732c97db341a6416a/invoke.js'
       };
 
       function mountIsolatedBanner(containerId, key, width, height, invokeUrl) {
@@ -216,7 +222,6 @@
         container.appendChild(iframe);
       }
 
-      // 1. Pasang Banner 300x250 di Sidebar
       mountIsolatedBanner(
         'ad-slot-300x250',
         '47f9b2c57e08fb1b89f553c346feffb4',
@@ -225,7 +230,6 @@
         ADSTERRA_INVOKE_URLS.banner300x250
       );
 
-      // 2. Pasang Banner Responsif (728x90 Desktop / 320x50 Mobile)
       if (window.innerWidth >= 768) {
         mountIsolatedBanner(
           'ad-slot-responsive',
@@ -245,8 +249,10 @@
       }
     })();
   </script>
+
+  <!-- SKRIP INTI TUNGGAL & TERURUT (47 MODUL) -->
   <script src="app.js?v=2026.11"></script>
-<script src="modules-pack-4.js?v=2026.11"></script>
-<script src="addons.js?v=2026.11"></script>
+  <script src="modules-pack-4.js?v=2026.11"></script>
+  <script src="addons.js?v=2026.11"></script>
 </body>
 </html>
